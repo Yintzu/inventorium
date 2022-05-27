@@ -5,7 +5,9 @@ const DataContext = createContext()
 export const useDataContext = () => useContext(DataContext)
 
 export default function DataProvider({ children }) {
+  
   const [locations, setLocations] = useState([])
+  const [items, setItems] = useState([])
 
   useEffect(() => {
     fetch("/api/locations")

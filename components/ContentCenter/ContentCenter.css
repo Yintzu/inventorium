@@ -9,16 +9,41 @@
   margin: 1rem 0;
 }
 
+.content-center-containers{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
 .content-center-container {
-  text-align: center;
   background-color: #cccccc;
-  min-height: 200px;
+  padding: 1rem;
+  border-radius: 5px;
 }
 
 .content-center-container-title {
-  display: inline-block;
+  text-align: center;
+  margin: 0 0 1rem 0;
+  font-weight: bold;
+}
+
+.content-center-ontheway-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 5px;
 }
 
 .content-center-ontheway-card {
-  
+  background: #BBBBBB;
+  padding: 0.5rem;
+}
+
+.content-center-ontheway-card p {
+  margin: 0;
+}
+
+.content-center-ontheway-hasarrived-btn{
+  background: #519C45;
+  cursor: pointer;
+  margin-top: 0.5rem;
 }
