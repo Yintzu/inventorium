@@ -2,20 +2,10 @@ import Head from "next/head"
 import ContentLeft from "../components/ContentLeft/ContentLeft.jsx"
 import ContentRight from "../components/ContentRight/ContentRight.jsx"
 import ContentCenter from "../components/ContentCenter/ContentCenter.jsx"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 
-export default function Home(props) {
+export default function Home() {
   const [selectedLocation, setSelectedLocation] = useState("")
-
-  useEffect(() => {
-
-    fetch("/api/posts")
-      .then(res => res.json())
-      .then(data => console.log("data", data))
-
-  }, [])
-
-  console.log("props.posts", props?.posts)
 
   return (
     <div>
