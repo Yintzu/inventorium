@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 html,
 body {
   padding: 0;
@@ -11,6 +15,43 @@ a {
   text-decoration: none;
 }
 
-* {
-  box-sizing: border-box;
+.top-bar {
+  background: #642323;
+  min-height: 5vh;
+  text-align: center;
+  color: #fff;
+  font-weight: bold;
+  display: grid;
+  place-items: center;
+  font-size: 1.4rem;
+}
+
+main {
+  min-height: 95vh;
+  display: grid;
+  place-items: center;
+}
+
+.content-wrapper {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.content-center {
+  background: #d9d9d9;
+  height: 80vh;
+  width: 100%;
+  max-width: 50vw;
+}
+
+.content-left,
+.content-right {
+  background: #d9d9d9;
+  height: 80vh;
+  width: 100%;
+  max-width: 300px;
 }
