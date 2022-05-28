@@ -6,9 +6,8 @@ export default function ContentCenter({ selectedLocation }) {
     <div className="content-center">
       <p className="content-center-title">{selectedLocation}</p>
       <div className="content-center-containers">
-
-      <OnTheWay />
-      <InStorage />
+        <OnTheWay />
+        <InStorage />
       </div>
     </div>
   )

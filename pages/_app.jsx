@@ -2,13 +2,22 @@ import "../styles/globals.css"
 import "../components/ContentLeft/ContentLeft.css"
 import "../components/ContentCenter/ContentCenter.css"
 import DataProvider from "../state/DataContext"
+import { QueryClient, QueryClientProvider } from "react-query"
 
-function MyApp({ Component, pageProps }) {
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+    },
+  },
+})
+
+export default function MyApp({ Component, pageProps }) {
   return (
-    <DataProvider>
-      <Component {...pageProps} />
-    </DataProvider>
+    <QueryClientProvider client={queryClient}>
+      <DataProvider>
+        <Component {...pageProps} />
+      </DataProvider>
+    </QueryClientProvider>
   )
 }
-
-export default MyApp

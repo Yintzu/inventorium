@@ -3,21 +3,24 @@ import { useState } from "react"
 export default function Location({ location, setSelectedLocation }) {
   const [isExpanded, setIsExpanded] = useState(false)
 
+  const handleExpand = (e) => {
+    e.stopPropagation()
+    setIsExpanded(!isExpanded)
+  }
+
   return (
-    <div className="content-left-location">
+    <div
+      className="content-left-location"
+      onClick={() => setSelectedLocation(location)}
+    >
       <div className="content-left-location-title-wrapper">
         <span
           className="content-left-expand-button"
-          onClick={() => setIsExpanded(!isExpanded)}
+          onClick={handleExpand}
         >
           {isExpanded ? "-" : "+"}
         </span>
-        <p
-          className="content-left-location-title"
-          onClick={() => setSelectedLocation(location)}
-        >
-          {location}
-        </p>
+        <p className="content-left-location-title">{location}</p>
       </div>
       {isExpanded ? (
         <div className="content-left-expanded-categories-wrapper">
