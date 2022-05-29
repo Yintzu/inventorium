@@ -8,7 +8,7 @@ export default function ContentLeft({ setSelectedLocation }) {
   return (
     <div className="content-left">
       <div className="content-left-locations-wrapper">
-        {locations.map(item => (
+        {locations?.map(item => (
           <Location
             key={item.id}
             location={item.name}

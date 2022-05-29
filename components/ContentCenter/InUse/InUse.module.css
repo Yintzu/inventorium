@@ -1,0 +1,22 @@
+.table {
+  width: 100%;
+}
+
+.table-headers {
+  text-align: left;
+}
+
+.table-row {
+  background: #bbbbbb;
+}
+
+.table-row td {
+  padding: 0.5em;
+}
+
+.remove{
+  background: #B86A6A;
+  cursor: pointer;
+  text-align: center;
+  border-radius: 5px;
+}
