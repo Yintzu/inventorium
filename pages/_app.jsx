@@ -3,6 +3,7 @@ import "../components/ContentLeft/ContentLeft.css"
 import "../components/ContentCenter/ContentCenter.css"
 import DataProvider from "../state/DataContext"
 import { QueryClient, QueryClientProvider } from "react-query"
+import AuthProvider from "../state/AuthContext"
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -15,9 +16,11 @@ const queryClient = new QueryClient({
 export default function MyApp({ Component, pageProps }) {
   return (
     <QueryClientProvider client={queryClient}>
-      <DataProvider>
-        <Component {...pageProps} />
-      </DataProvider>
+      <AuthProvider>
+        <DataProvider>
+          <Component {...pageProps} />
+        </DataProvider>
+      </AuthProvider>
     </QueryClientProvider>
   )
 }

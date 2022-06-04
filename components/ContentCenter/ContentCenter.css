@@ -16,7 +16,7 @@
 }
 
 .content-center-container {
-  background-color: #cccccc;
+  background-color: var(--SECTION_BG);
   padding: 1rem;
   border-radius: 5px;
 }
@@ -34,7 +34,7 @@
 }
 
 .content-center-ontheway-card {
-  background: #BBBBBB;
+  background: var(--CARD_BG);
   padding: 0.5rem;
 }
 
@@ -43,7 +43,9 @@
 }
 
 .content-center-ontheway-hasarrived-btn{
-  background: #519C45;
+  background: var(--SUCCESS_GREEN);
   cursor: pointer;
   margin-top: 0.5rem;
+  border: 1px solid black;
+  padding: 0.2rem 0.5rem;
 }

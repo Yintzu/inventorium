@@ -1,0 +1,35 @@
+.top-bar {
+  background: #642323;
+  height: 5vh;
+  padding: 0 1rem;
+  color: #fff;
+  font-weight: bold;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.4rem;
+}
+
+.logo{
+  grid-column-start: 2;
+  text-align: center;
+}
+
+.logout{
+  background: var(--DANGER_RED);
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  border: 1px solid black;
+  cursor: pointer;
+}
+
+.user-wrapper {
+  justify-self: end;
+  height: 100%;
+  display: flex;
+  gap: 1rem;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
