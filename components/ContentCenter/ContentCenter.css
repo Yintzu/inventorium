@@ -2,6 +2,10 @@
   padding: 1rem;
 }
 
+.content-center-title-wrapper {
+  position: relative;
+}
+
 .content-center-title {
   text-align: center;
   font-size: 2rem;
@@ -9,7 +13,23 @@
   margin: 0 0 1rem 0;
 }
 
-.content-center-containers{
+.content-center-add-btn {
+  position: absolute;
+  padding: 0.5rem 1rem;
+  margin: 0;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.content-center-add-btn:hover {
+  background: var(--SECTION_BG);
+}
+
+.content-center-containers {
   display: flex;
   flex-direction: column;
   gap: 5px;
@@ -25,27 +45,4 @@
   text-align: center;
   margin: 0 0 1rem 0;
   font-weight: bold;
-}
-
-.content-center-ontheway-grid{
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 5px;
-}
-
-.content-center-ontheway-card {
-  background: var(--CARD_BG);
-  padding: 0.5rem;
-}
-
-.content-center-ontheway-card p {
-  margin: 0;
-}
-
-.content-center-ontheway-hasarrived-btn{
-  background: var(--SUCCESS_GREEN);
-  cursor: pointer;
-  margin-top: 0.5rem;
-  border: 1px solid black;
-  padding: 0.2rem 0.5rem;
 }

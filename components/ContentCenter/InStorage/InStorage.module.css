@@ -1,0 +1,14 @@
+.ontheway-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 5px;
+}
+
+.ontheway-card {
+  background: var(--CARD_BG);
+  padding: 0.5rem;
+}
+
+.ontheway-card p {
+  margin: 0;
+}
