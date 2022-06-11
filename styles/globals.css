@@ -13,6 +13,7 @@
 
   --TOP_BAR_HEIGHT: 5vh;
   --INPUT_HEIGHT: 32px;
+  --MOBILE_BREAKPOINT: 768px;
 }
 
 html,
