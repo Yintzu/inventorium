@@ -1,9 +1,10 @@
 import styles from "./InUse.module.css"
+import centerStyle from "../ContentCenter.module.css"
 
 export default function InUse() {
   return (
-    <div className="content-center-container">
-      <p className="content-center-container-title">I drift</p>
+    <div className={centerStyle["content-center-container"]}>
+      <p className={centerStyle["content-center-container-title"]}>I drift</p>
       <table className={styles["table"]}>
         <thead>
           <tr className={styles["table-headers"]}>

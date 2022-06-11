@@ -1,4 +1,5 @@
 import { useState } from "react"
+import style from "./AddLocation.module.css"
 
 export default function AddLocation() {
   const [showInput, setShowInput] = useState(false)
@@ -17,7 +18,7 @@ export default function AddLocation() {
   return (
     <form
       onSubmit={submitHandler}
-      className="content-left-add-location-wrapper"
+      className={style["content-left-add-location-wrapper"]}
       onClick={showInput ? null : () => setShowInput(true)}
     >
       {showInput ? (
@@ -27,7 +28,7 @@ export default function AddLocation() {
           <button onClick={cancelHandler}>Avbryt</button>
         </>
       ) : (
-        <p className="content-left-add-location-text">Lägg till +</p>
+        <p className={style["content-left-add-location-text"]}>Lägg till +</p>
       )}
     </form>
   )

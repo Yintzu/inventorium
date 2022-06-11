@@ -1,15 +1,3 @@
-.content-left {
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.content-left-locations-wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
 
 .content-left-location {
   background: #bbbbbb;
@@ -46,20 +34,4 @@
   cursor: pointer;
   margin: 0 0 0 3rem;
   padding: 0.2rem;
-}
-
-.content-left-add-location-wrapper {
-  border-radius: 5px;
-  cursor: pointer;
-  padding: 1rem;
-  display: flex;
-  justify-content: center;
-}
-
-.content-left-add-location-wrapper:hover {
-  background: #cccccc;
-}
-
-.content-left-add-location-text {
-  margin: 0;
 }

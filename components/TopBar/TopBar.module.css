@@ -1,6 +1,6 @@
 .top-bar {
   background: #642323;
-  height: 5vh;
+  height: var(--TOP_BAR_HEIGHT);
   padding: 0 1rem;
   color: #fff;
   font-weight: bold;
@@ -11,12 +11,12 @@
   font-size: 1.4rem;
 }
 
-.logo{
+.logo {
   grid-column-start: 2;
   text-align: center;
 }
 
-.logout{
+.logout {
   background: var(--DANGER_RED);
   padding: 0.5rem 1rem;
   border-radius: 5px;

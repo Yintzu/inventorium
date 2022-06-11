@@ -1,4 +1,5 @@
 import { useState } from "react"
+import style from "./ContentCenter.module.css"
 import AddItem from "./AddItem/AddItem"
 import InStorage from "./InStorage/InStorage"
 import InUse from "./InUse/InUse"
@@ -8,20 +9,20 @@ export default function ContentCenter({ selectedLocation }) {
   const [showAddModal, setShowAddModal] = useState(false)
 
   return (
-    <div className="content-center">
+    <div className={style["content-center"]}>
       {selectedLocation && (
         <>
-          <div className="content-center-title-wrapper">
-            <p className="content-center-title">{selectedLocation}</p>
+          <div className={style["content-center-title-wrapper"]}>
+            <p className={style["content-center-title"]}>{selectedLocation}</p>
             <p
-              className="content-center-add-btn"
+              className={style["content-center-add-btn"]}
               onClick={() => setShowAddModal(true)}
             >
               +
             </p>
           </div>
 
-          <div className="content-center-containers">
+          <div className={style["content-center-containers"]}>
             <OnTheWay />
             <InStorage />
             <InUse />

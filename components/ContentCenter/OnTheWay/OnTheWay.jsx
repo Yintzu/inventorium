@@ -1,9 +1,12 @@
 import style from "./OnTheWay.module.css"
+import centerStyle from "../ContentCenter.module.css"
 
 export default function OnTheWay() {
   return (
-    <div className="content-center-container">
-      <p className="content-center-container-title">På väg till</p>
+    <div className={centerStyle["content-center-container"]}>
+      <p className={centerStyle["content-center-container-title"]}>
+        På väg till
+      </p>
       <div className={style["ontheway-grid"]}>
         <div className={style["ontheway-card"]}>
           <p>Cisco 48p</p>

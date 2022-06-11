@@ -1,9 +1,7 @@
-import "../styles/globals.css"
-import "../components/ContentLeft/ContentLeft.css"
-import "../components/ContentCenter/ContentCenter.css"
-import DataProvider from "../state/DataContext"
 import { QueryClient, QueryClientProvider } from "react-query"
+import DataProvider from "../state/DataContext"
 import AuthProvider from "../state/AuthContext"
+import "../styles/globals.css"
 
 const queryClient = new QueryClient({
   defaultOptions: {
