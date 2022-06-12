@@ -9,7 +9,7 @@ export default function ContentCenter({ selectedLocation }) {
   const [showAddModal, setShowAddModal] = useState(false)
 
   return (
-    <div className={style["content-center"]}>
+    <div className="content-center">
       {selectedLocation && (
         <>
           <div className={style["content-center-title-wrapper"]}>

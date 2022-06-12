@@ -15,6 +15,7 @@
 .location {
   display: block;
   height: 75%;
+  cursor: pointer;
 }
 
 .logo {

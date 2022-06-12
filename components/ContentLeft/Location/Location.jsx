@@ -1,8 +1,17 @@
 import { useState } from "react"
 import style from "./Location.module.css"
 
-export default function Location({ location, setSelectedLocation }) {
+export default function Location({
+  location,
+  setSelectedLocation,
+  setShowLocationsMobile,
+}) {
   const [isExpanded, setIsExpanded] = useState(false)
+
+  const handleClick = () => {
+    setSelectedLocation(location)
+    setShowLocationsMobile(false)
+  }
 
   const handleExpand = e => {
     e.stopPropagation()
@@ -10,10 +19,7 @@ export default function Location({ location, setSelectedLocation }) {
   }
 
   return (
-    <div
-      className={style["content-left-location"]}
-      onClick={() => setSelectedLocation(location)}
-    >
+    <div className={style["content-left-location"]} onClick={handleClick}>
       <div className={style["content-left-location-title-wrapper"]}>
         <span
           className={style["content-left-expand-button"]}
