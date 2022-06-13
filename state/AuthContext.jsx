@@ -5,7 +5,7 @@ import {
   onAuthStateChanged,
   signOut,
 } from "firebase/auth"
-import { auth } from "../firebase/firebase"
+import { auth } from "../services/firebase/firebase"
 
 const AuthContext = createContext()
 export const useAuth = () => useContext(AuthContext)

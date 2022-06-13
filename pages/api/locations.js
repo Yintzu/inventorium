@@ -1,4 +1,4 @@
-import prisma from "../../prisma/client.ts"
+import prisma from "../../services/prisma/client.ts"
 
 export default async function getAllLocations(req, res) {
   try {
