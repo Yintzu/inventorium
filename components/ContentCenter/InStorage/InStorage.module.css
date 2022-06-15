@@ -1,14 +1,57 @@
-.ontheway-grid{
+.grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 5px;
 }
 
-.ontheway-card {
+.card {
   background: var(--CARD_BG);
   padding: 0.5rem;
 }
 
-.ontheway-card p {
+.title {
+  margin: 0 0 1rem 0;
+}
+
+.amount {
+  width: 100%;
   margin: 0;
+}
+
+.amount-wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  margin-bottom: 1rem;
+}
+
+.btn-wrapper {
+  width: 100%;
+  display: flex;
+  gap: 5px;
+}
+
+.increment,
+.decrement,
+.send,
+.enable {
+  width: 100%;
+  border: 1px solid black;
+  cursor: pointer;
+}
+
+.increment {
+  background: var(--SUCCESS_GREEN);
+}
+
+.decrement {
+  background: var(--DANGER_RED);
+}
+
+.send {
+  background: var(--YELLOW);
+}
+
+.enable {
+  background: var(--BLUE);
 }

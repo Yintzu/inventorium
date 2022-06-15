@@ -10,14 +10,14 @@ export default function InUse() {
           <tr className={styles["table-headers"]}>
             <th>Hostname</th>
             <th>Modell</th>
-            <th>Serienummer</th>
+            {/* <th>Serienummer</th> */}
           </tr>
         </thead>
         <tbody>
           <tr className={styles["table-row"]}>
             <td>SE-HEIM-NRK-SPARVE09-AS01</td>
             <td>C375048P</td>
-            <td>FSF94UR9U4</td>
+            {/* <td>FSF94UR9U4</td> */}
             <td className={styles["remove"]}>X</td>
           </tr>
         </tbody>

@@ -24,7 +24,7 @@ export default function ContentCenter({ selectedLocation }) {
 
           <div className={style["content-center-containers"]}>
             <OnTheWay />
-            <InStorage />
+            <InStorage selectedLocation={selectedLocation} />
             <InUse />
           </div>
         </>

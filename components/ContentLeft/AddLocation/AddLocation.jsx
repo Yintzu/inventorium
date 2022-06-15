@@ -7,6 +7,10 @@ export default function AddLocation() {
   const submitHandler = e => {
     e.preventDefault()
     setShowInput(false)
+    fetch("/api/locations", {
+      method: "POST",
+      body: JSON.stringify({ name: "HELOOO?!" }),
+    })
   }
 
   const cancelHandler = e => {
