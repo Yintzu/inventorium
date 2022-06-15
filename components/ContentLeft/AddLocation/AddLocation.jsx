@@ -1,16 +1,23 @@
-import { useState } from "react"
+import { useRef, useState } from "react"
+import { useMutation, useQueryClient } from "react-query"
+import { postLocation } from "../../../utilities/fetchers"
 import style from "./AddLocation.module.css"
 
 export default function AddLocation() {
   const [showInput, setShowInput] = useState(false)
+  const inputRef = useRef()
+  const queryClient = useQueryClient()
+
+  const { mutate } = useMutation(postLocation, {
+    onSettled: () => {
+      queryClient.refetchQueries()
+    },
+  })
 
   const submitHandler = e => {
     e.preventDefault()
     setShowInput(false)
-    fetch("/api/locations", {
-      method: "POST",
-      body: JSON.stringify({ name: "HELOOO?!" }),
-    })
+    mutate(inputRef.current.value)
   }
 
   const cancelHandler = e => {
@@ -27,7 +34,7 @@ export default function AddLocation() {
     >
       {showInput ? (
         <>
-          <input type="text" />
+          <input type="text" ref={inputRef} />
           <button type="submit">OK</button>
           <button onClick={cancelHandler}>Avbryt</button>
         </>
