@@ -4,13 +4,13 @@ import style from "./Location.module.css"
 export default function Location({
   location,
   setSelectedLocation,
-  setShowLocationsMobile,
+  setShowSidebarMobile,
 }) {
   const [isExpanded, setIsExpanded] = useState(false)
 
   const handleClick = () => {
     setSelectedLocation(location)
-    setShowLocationsMobile(false)
+    setShowSidebarMobile(false)
   }
 
   const handleExpand = e => {

@@ -10,7 +10,7 @@ import { useAuth } from "../state/AuthContext.jsx"
 export default function Home() {
   const { user } = useAuth()
   const [selectedLocation, setSelectedLocation] = useState("")
-  const [showLocationsMobile, setShowLocationsMobile] = useState(false)
+  const [showSidebarMobile, setShowSidebarMobile] = useState(false)
 
   return (
     <div>
@@ -20,15 +20,15 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <TopBar setShowLocationsMobile={setShowLocationsMobile} />
+      <TopBar setShowSidebarMobile={setShowSidebarMobile} />
 
       <main>
-        {user ? (
+        {user === undefined ? null : user ? (
           <div className="content-wrapper">
             <ContentLeft
               setSelectedLocation={setSelectedLocation}
-              showLocationsMobile={showLocationsMobile}
-              setShowLocationsMobile={setShowLocationsMobile}
+              showSidebarMobile={showSidebarMobile}
+              setShowSidebarMobile={setShowSidebarMobile}
             />
             <ContentCenter selectedLocation={selectedLocation} />
             <ContentRight />

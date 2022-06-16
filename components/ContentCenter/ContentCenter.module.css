@@ -9,22 +9,6 @@
   margin: 0 0 1rem 0;
 }
 
-.content-center-add-btn {
-  position: absolute;
-  padding: 0.5rem 1rem;
-  margin: 0;
-  top: 50%;
-  right: 0;
-  transform: translateY(-50%);
-  cursor: pointer;
-  font-weight: bold;
-  border-radius: 5px;
-}
-
-.content-center-add-btn:hover {
-  background: var(--SECTION_BG);
-}
-
 .content-center-containers {
   display: flex;
   flex-direction: column;

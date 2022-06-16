@@ -16,7 +16,9 @@ export default function Modal({ modalMode, setModalMode, selectedLocation }) {
           <p className={style["title"]}>Skicka till:</p>
           <select className={style["select"]}>
             {otherLocations.map(item => (
-              <option value={item.name}>{item.name}</option>
+              <option value={item.name} key={item.id}>
+                {item.name}
+              </option>
             ))}
           </select>
         </>

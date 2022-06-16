@@ -6,14 +6,14 @@ import { getLocations } from "../../utilities/fetchers"
 
 export default function ContentLeft({
   setSelectedLocation,
-  showLocationsMobile,
-  setShowLocationsMobile,
+  showSidebarMobile,
+  setShowSidebarMobile,
 }) {
   const { data: locations = [] } = useQuery("locations", getLocations)
 
   return (
     <div
-      className={`content-left ${showLocationsMobile && "content-left-open"}`}
+      className={`content-left ${showSidebarMobile && "content-left-open"}`}
     >
       <div className={style["content-left-locations-wrapper"]}>
         {locations.map(item => (
@@ -21,7 +21,7 @@ export default function ContentLeft({
             key={item.id}
             location={item.name}
             setSelectedLocation={setSelectedLocation}
-            setShowLocationsMobile={setShowLocationsMobile}
+            setShowSidebarMobile={setShowSidebarMobile}
           />
         ))}
       </div>

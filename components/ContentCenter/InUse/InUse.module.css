@@ -14,9 +14,14 @@
   padding: 0.5em;
 }
 
-.remove{
-  background: #B86A6A;
+.justify-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+.remove-btn {
+  background: var(--DANGER_RED);
   cursor: pointer;
   text-align: center;
-  border-radius: 5px;
+  border: 1px solid black;
 }

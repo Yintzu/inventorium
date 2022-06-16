@@ -16,9 +16,11 @@ export default function InUse() {
         <tbody>
           <tr className={styles["table-row"]}>
             <td>SE-HEIM-NRK-SPARVE09-AS01</td>
-            <td>C375048P</td>
+            <td className={styles["justify-between"]}>
+              <span>C375048P</span>
+              <button className={styles["remove-btn"]}>Ta ur drift</button>
+            </td>
             {/* <td>FSF94UR9U4</td> */}
-            <td className={styles["remove"]}>X</td>
           </tr>
         </tbody>
       </table>

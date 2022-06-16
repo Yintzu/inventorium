@@ -15,6 +15,7 @@
 
   --TOP_BAR_HEIGHT: 5vh;
   --INPUT_HEIGHT: 32px;
+  --BUTTON_BORDER: 1px solid #000;
 }
 
 html,

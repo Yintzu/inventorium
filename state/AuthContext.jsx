@@ -67,7 +67,5 @@ export default function AuthProvider({ children }) {
     logoutUser,
   }
 
-  if (user === undefined) return null
-
   return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>
 }

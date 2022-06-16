@@ -33,10 +33,11 @@
 }
 
 .input {
-  display: inline-block;
+  display: block;
+  margin: 0 auto 2rem auto;
   width: 100%;
+  max-width: 400px;
   height: var(--INPUT_HEIGHT);
-  margin-bottom: 2rem;
 }
 
 .title {
@@ -56,6 +57,7 @@
 .confirm {
   cursor: pointer;
   padding: 0.5rem 1rem;
+  border: var(--BUTTON_BORDER);
   border-radius: 5px;
   background: var(--SUCCESS_GREEN);
 }
