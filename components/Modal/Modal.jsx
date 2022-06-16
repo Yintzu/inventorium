@@ -1,56 +1,39 @@
-import { useQuery } from "react-query"
-import { getLocations } from "../../utilities/fetchers"
+import { useGlobalState } from "../../state/GlobalStateContext"
 import style from "./Modal.module.css"
+import { useModal } from "./useModal"
 
-export default function Modal({ modalMode, setModalMode, selectedLocation }) {
-  const { data: locations } = useQuery("locations", getLocations)
+export default function Modal() {
+  const { setModalMode } = useGlobalState()
+  const [jsx, handleSubmit] = useModal()
 
-  const renderModalType = () => {
-    if (modalMode === "send") {
-      const otherLocations = locations.filter(
-        item => item.name !== selectedLocation
-      )
+  const handleOverlayClick = e => {
+    if (e.target.className.includes("overlay")) setModalMode(null)
+  }
 
-      return (
-        <>
-          <p className={style["title"]}>Skicka till:</p>
-          <select className={style["select"]}>
-            {otherLocations.map(item => (
-              <option value={item.name} key={item.id}>
-                {item.name}
-              </option>
-            ))}
-          </select>
-        </>
-      )
-    }
-
-    if (modalMode === "enable") {
-      return (
-        <>
-          <p className={style["title"]}>Ange hostname</p>
-          <input type="text" className={style["input"]} />
-        </>
-      )
-    }
+  const handleCancel = e => {
+    e.preventDefault()
+    setModalMode(null)
   }
 
   return (
-    <div className={style["overlay"]}>
+    <div className={style["overlay"]} onClick={handleOverlayClick}>
       <div className={style["box"]}>
-        <div className={style["container"]}>
-          {renderModalType()}
+        <form className={style["container"]} onSubmit={handleSubmit}>
+          {jsx}
 
           <div className={style["btn-wrapper"]}>
             <button
               className={style["cancel"]}
-              onClick={() => setModalMode(false)}
+              onClick={handleCancel}
+              type="button"
             >
               Avbryt
             </button>
-            <button className={style["confirm"]}>Lägg till</button>
+            <button className={style["confirm"]} type="submit">
+              Lägg till
+            </button>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   )

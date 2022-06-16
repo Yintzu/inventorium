@@ -1,8 +1,10 @@
 import { useAuth } from "../../state/AuthContext"
+import { useGlobalState } from "../../state/GlobalStateContext"
 import style from "./TopBar.module.css"
 
-export default function TopBar({ setShowSidebarMobile }) {
+export default function TopBar() {
   const { user, logoutUser } = useAuth()
+  const { setShowSidebarMobile } = useGlobalState()
 
   return (
     <div className={style["top-bar"]}>

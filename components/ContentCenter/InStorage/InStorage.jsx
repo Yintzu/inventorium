@@ -1,10 +1,9 @@
-import style from "./InStorage.module.css"
+import { useGlobalState } from "../../../state/GlobalStateContext"
 import centerStyle from "../ContentCenter.module.css"
-import { useState } from "react"
-import Modal from "../../Modal/Modal"
+import style from "./InStorage.module.css"
 
-export default function InStorage({ selectedLocation }) {
-  const [modalMode, setModalMode] = useState()
+export default function InStorage() {
+  const { setModalMode } = useGlobalState()
 
   return (
     <div className={centerStyle["content-center-container"]}>
@@ -35,13 +34,6 @@ export default function InStorage({ selectedLocation }) {
           </div>
         </div>
       </div>
-      {modalMode ? (
-        <Modal
-          modalMode={modalMode}
-          setModalMode={setModalMode}
-          selectedLocation={selectedLocation}
-        />
-      ) : null}
     </div>
   )
 }

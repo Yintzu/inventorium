@@ -1,36 +1,36 @@
 
-.content-left-location {
+.location {
   background: #bbbbbb;
   padding: 1rem;
   border-radius: 5px;
   cursor: pointer;
 }
 
-.content-left-expand-button {
+.expand-button {
   cursor: pointer;
   width: 20px;
   text-align: center;
 }
 
-.content-left-location-title-wrapper {
+.location-title-wrapper {
   font-weight: bold;
   display: flex;
   flex-direction: row;
   gap: 5px;
 }
 
-.content-left-location-title {
+.location-title {
   margin: 0;
 }
 
-.content-left-expanded-categories-wrapper {
+.expanded-categories-wrapper {
   width: 100%;
   display: flex;
   flex-direction: column;
   margin-top: 7px;
 }
 
-.content-left-expanded-categories {
+.expanded-categories {
   cursor: pointer;
   margin: 0 0 0 3rem;
   padding: 0.2rem;

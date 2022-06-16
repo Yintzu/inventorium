@@ -3,14 +3,14 @@ import ContentLeft from "../components/ContentLeft/ContentLeft.jsx"
 import ContentRight from "../components/ContentRight/ContentRight.jsx"
 import ContentCenter from "../components/ContentCenter/ContentCenter.jsx"
 import TopBar from "../components/TopBar/TopBar.jsx"
-import { useState } from "react"
 import Login from "../components/Login/Login.jsx"
+import Modal from "../components/Modal/Modal.jsx"
 import { useAuth } from "../state/AuthContext.jsx"
+import { useGlobalState } from "../state/GlobalStateContext.jsx"
 
 export default function Home() {
   const { user } = useAuth()
-  const [selectedLocation, setSelectedLocation] = useState("")
-  const [showSidebarMobile, setShowSidebarMobile] = useState(false)
+  const { modalMode } = useGlobalState()
 
   return (
     <div>
@@ -20,18 +20,14 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <TopBar setShowSidebarMobile={setShowSidebarMobile} />
-
+      <TopBar />
       <main>
         {user === undefined ? null : user ? (
           <div className="content-wrapper">
-            <ContentLeft
-              setSelectedLocation={setSelectedLocation}
-              showSidebarMobile={showSidebarMobile}
-              setShowSidebarMobile={setShowSidebarMobile}
-            />
-            <ContentCenter selectedLocation={selectedLocation} />
+            <ContentLeft />
+            <ContentCenter />
             <ContentRight />
+            {modalMode && <Modal />}
           </div>
         ) : (
           <Login />

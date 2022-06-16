@@ -9,6 +9,5 @@ export const postLocation = async name => {
     method: "POST",
     body: JSON.stringify({ name }),
   })
-  console.log('res', res)
   return await res.json()
 }
