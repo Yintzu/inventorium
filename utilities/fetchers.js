@@ -13,6 +13,9 @@ export const postLocation = async name => {
 }
 
 export const getItemsForLocation = async location => {
-  const res = await fetch("/api/items")
+  const res = await fetch("/api/items/getForLocation", {
+    method: "POST",
+    body: JSON.stringify({ location }),
+  })
   return await res.json()
 }
