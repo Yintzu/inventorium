@@ -2,7 +2,7 @@ import prisma from "../../services/prisma/client.ts"
 
 export default async function getItemsForLocation(req, res) {
     try {
-        const items = await prisma.$queryRaw`SELECT i.id, p.name, i.location, s.sendto FROM items i
+        const items = await prisma.$queryRaw`SELECT i.id, p.name, i.location, s.sendto, FROM items i
         JOIN products p ON p.id = i.product
         LEFT JOIN shipping s ON i.id = s.item
         WHERE s.sendto = '1' OR i.location = '1'`
