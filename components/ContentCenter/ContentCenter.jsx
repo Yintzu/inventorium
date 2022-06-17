@@ -8,21 +8,22 @@ import OnTheWay from "./OnTheWay/OnTheWay"
 
 export default function ContentCenter() {
   const { selectedLocation } = useGlobalState()
+
   const { data: itemsForLocation } = useQuery(
-    "itemsForLocation",
-    getItemsForLocation
+    ["itemsForLocation", selectedLocation],
+    () => getItemsForLocation(selectedLocation?.id)
   )
 
-  console.log('itemsForLocation', itemsForLocation)
+  console.log("itemsForLocation", itemsForLocation)
 
   return (
     <div className="content-center">
       {selectedLocation && (
         <>
-          <p className={style["title"]}>{selectedLocation}</p>
+          <p className={style["title"]}>{selectedLocation.name}</p>
           <div className={style["containers"]}>
-            <OnTheWay />
-            <InStorage />
+            <OnTheWay itemsForLocation={itemsForLocation} />
+            <InStorage itemsForLocation={itemsForLocation} />
             <InUse />
           </div>
         </>

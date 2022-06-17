@@ -14,14 +14,13 @@ model locations {
 }
 
 model items {
-  id         Int        @id @default(autoincrement())
+  id         Int      @id @default(autoincrement())
   product    Int
-  serial     String?    @db.VarChar(255)
-  location   String     @db.VarChar(255)
+  serial     String?  @db.VarChar(255)
+  location   Int
   shippingid Int?
-  inuse      Boolean    @default(false)
-  products   products   @relation(fields: [product], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_product")
-  shipping   shipping[]
+  inuse      Boolean  @default(false)
+  products   products @relation(fields: [product], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_product")
 }
 
 model products {
@@ -32,11 +31,9 @@ model products {
 
 model shipping {
   id        Int        @id @default(autoincrement())
-  item      Int
   sent      DateTime?  @db.Date
   received  DateTime?  @db.Date
   tracking  String?    @db.VarChar(255)
   sendto    Int?
-  items     items      @relation(fields: [item], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_item")
   locations locations? @relation(fields: [sendto], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_to")
 }
