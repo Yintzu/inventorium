@@ -1,6 +1,6 @@
 import { useQuery } from "react-query"
 import { useGlobalState } from "../../state/GlobalStateContext"
-import { getItemsForLocation, getLocations } from "../../utilities/fetchers"
+import { getItemsForLocation } from "../../utilities/fetchers"
 import style from "./ContentCenter.module.css"
 import InStorage from "./InStorage/InStorage"
 import InUse from "./InUse/InUse"
@@ -8,13 +8,10 @@ import OnTheWay from "./OnTheWay/OnTheWay"
 
 export default function ContentCenter() {
   const { selectedLocation } = useGlobalState()
-  const { data: locations = [] } = useQuery("locations", getLocations)
-
-  const locationId = locations.find(item => item.name === selectedLocation)?.id
 
   const { data: itemsForLocation } = useQuery(
     ["itemsForLocation", selectedLocation],
-    () => getItemsForLocation(locationId)
+    () => getItemsForLocation(selectedLocation?.id)
   )
 
   console.log("itemsForLocation", itemsForLocation)
@@ -23,10 +20,10 @@ export default function ContentCenter() {
     <div className="content-center">
       {selectedLocation && (
         <>
-          <p className={style["title"]}>{selectedLocation}</p>
+          <p className={style["title"]}>{selectedLocation.name}</p>
           <div className={style["containers"]}>
-            <OnTheWay />
-            <InStorage />
+            <OnTheWay itemsForLocation={itemsForLocation} />
+            <InStorage itemsForLocation={itemsForLocation} />
             <InUse />
           </div>
         </>

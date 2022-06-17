@@ -12,7 +12,7 @@ export default function ContentLeft() {
     <div className={`content-left ${showSidebarMobile && "content-left-open"}`}>
       <div className={style["content-left-locations-wrapper"]}>
         {locations.map(item => (
-          <Location key={item.id} location={item.name} />
+          <Location key={item.id} location={item} />
         ))}
       </div>
       <div className={style["icon-wrapper"]}>

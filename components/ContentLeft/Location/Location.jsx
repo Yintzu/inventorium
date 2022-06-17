@@ -25,7 +25,7 @@ export default function Location({ location }) {
         >
           {isExpanded ? "-" : "+"}
         </span>
-        <p className={style["location-title"]}>{location}</p>
+        <p className={style["location-title"]}>{location.name}</p>
       </div>
       {isExpanded ? (
         <div className={style["expanded-categories-wrapper"]}>
