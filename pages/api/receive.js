@@ -6,7 +6,7 @@ export default async function main(req, res) {
         try {
             const reply = await prisma.items.update({
                 where: { id: jsitem.id },
-                data: { sendto: null },
+                data: { shippingid: null },
             })
             res.status(200).json(reply)
         } catch (error) {

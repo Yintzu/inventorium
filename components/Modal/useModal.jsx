@@ -1,6 +1,10 @@
 import { useRef } from "react"
 import style from "./Modal.module.css"
-import { getLocations, postLocation } from "../../utilities/fetchers.js"
+import {
+  getLocations,
+  postLocation,
+  sendItem,
+} from "../../utilities/fetchers.js"
 import { useMutation, useQuery, useQueryClient } from "react-query"
 import { useGlobalState } from "../../state/GlobalStateContext"
 
@@ -9,6 +13,7 @@ export const useModal = () => {
   const { data: locations } = useQuery("locations", getLocations)
   const { modalMode, setModalMode, selectedLocation } = useGlobalState()
   const inputRef = useRef()
+  const inputRef2 = useRef()
   let jsx, fetcher
 
   switch (modalMode) {
@@ -28,16 +33,19 @@ export const useModal = () => {
       jsx = (
         <>
           <p className={style["title"]}>Skicka till:</p>
-          <select className={style["select"]}>
+          <select className={style["select"]} ref={inputRef}>
             {otherLocations.map(item => (
               <option value={item.name} key={item.id}>
                 {item.name}
               </option>
             ))}
           </select>
+          <label htmlFor="tracking">Tracking</label>
+          <input type="text" className={style["input"]} ref={inputRef2} id="tracking" />
         </>
       )
-      fetcher = null
+      //TODO: fix this shit
+      fetcher = sendItem
       break
     case "enable":
       jsx = (

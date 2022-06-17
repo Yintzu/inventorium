@@ -1,11 +1,12 @@
 import style from "../OnTheWay.module.css"
 
-export default function SentFromCard({ item, locations }) {
+export default function IncomingCard({ item, locations }) {
+  
   return (
     <div className={style["card"]} key={item.id}>
       <p>{item.name}</p>
       <p>
-        Skickat till: {locations.find(location => location.id === item.sendto).name}
+        På väg från: {locations.find(location => location.id === item.location)?.name}
       </p>
       <button className={style["hasarrived-btn"]}>Har ankommit</button>
     </div>

@@ -19,3 +19,18 @@ export const getItemsForLocation = async location => {
   })
   return await res.json()
 }
+
+export const recieveItem = async id => {
+  const res = await fetch("/api/receive", {
+    method: "POST",
+    body: JSON.stringify({ id }),
+  })
+  return await res.json()
+}
+
+export const sendItem = async (itemid, sendto, tracking) => {
+  const res = await fetch("/api/send", {
+    method: "POST",
+    body: JSON.stringify({ itemid, sendto, tracking }),
+  })
+}

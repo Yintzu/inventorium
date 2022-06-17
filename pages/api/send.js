@@ -6,11 +6,11 @@ export default async function main(req, res) {
     if (jssend != null) {
         try {
             await prisma.$queryRaw`with rows as(
-                INSERT INTO shipping (sent, sendto)
-                VALUES ('${date.today()}', ${jssend.sendto}) RETURNING id)
+                INSERT INTO shipping (sent, sendto, tracking)
+                VALUES ('${date.today()}', ${jssend.sendto}, ${jssend.tracking}) RETURNING id)
                 UPDATE items
                 SET shippingid = (SELECT * FROM rows)
-                WHERE id = ${jssend.item}`
+                WHERE id = ${jssend.itemid}`
             res.status(200).json(reply)
         } catch (error) {
             console.error("Error talking to DB: ", error.message)
