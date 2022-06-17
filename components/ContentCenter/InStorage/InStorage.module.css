@@ -9,7 +9,34 @@
   padding: 0.5rem;
 }
 
+.title-wrapper {
+  position: relative;
+}
+
 .title {
+  grid-column-start: 2;
+}
+
+.add-btn {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  width: 30px;
+  line-height: 0;
+  aspect-ratio: 1 / 1;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  font-weight: bold;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.add-btn:hover {
+  background: var(--CARD_BG);
+}
+
+.card-title {
   margin: 0 0 1rem 0;
 }
 

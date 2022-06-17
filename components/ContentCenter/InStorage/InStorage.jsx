@@ -6,11 +6,16 @@ export default function InStorage() {
   const { setModalMode } = useGlobalState()
 
   return (
-    <div className={centerStyle["content-center-container"]}>
-      <p className={centerStyle["content-center-container-title"]}>I lager</p>
+    <div className={`${centerStyle["container"]}`}>
+      <div className={style["title-wrapper"]}>
+        <p className={`${centerStyle["container-title"]} ${style["title"]}`}>
+          I lager
+        </p>
+        <span className={style["add-btn"]}>+</span>
+      </div>
       <div className={style["grid"]}>
         <div className={style["card"]}>
-          <p className={style["title"]}>Cisco 24p</p>
+          <p className={style["card-title"]}>Cisco 24p</p>
           <div className={style["amount-wrapper"]}>
             <p className={style["amount"]}>Antal: </p>
             <div className={style["btn-wrapper"]}>

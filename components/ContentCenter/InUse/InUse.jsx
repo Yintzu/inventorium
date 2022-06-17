@@ -3,8 +3,8 @@ import centerStyle from "../ContentCenter.module.css"
 
 export default function InUse() {
   return (
-    <div className={centerStyle["content-center-container"]}>
-      <p className={centerStyle["content-center-container-title"]}>I drift</p>
+    <div className={centerStyle["container"]}>
+      <p className={centerStyle["container-title"]}>I drift</p>
       <table className={styles["table"]}>
         <thead>
           <tr className={styles["table-headers"]}>
