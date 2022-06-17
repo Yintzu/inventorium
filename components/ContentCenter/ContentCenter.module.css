@@ -1,27 +1,27 @@
-.content-center-title-wrapper {
+.title-wrapper {
   position: relative;
 }
 
-.content-center-title {
+.title {
   text-align: center;
   font-size: 2rem;
   font-weight: bold;
   margin: 0 0 1rem 0;
 }
 
-.content-center-containers {
+.containers {
   display: flex;
   flex-direction: column;
   gap: 5px;
 }
 
-.content-center-container {
+.container {
   background-color: var(--SECTION_BG);
   padding: 1rem;
   border-radius: 5px;
 }
 
-.content-center-container-title {
+.container-title {
   text-align: center;
   margin: 0 0 1rem 0;
   font-weight: bold;

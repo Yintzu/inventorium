@@ -1,19 +1,26 @@
-.ontheway-grid{
+.container-wrapper {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
   gap: 5px;
 }
 
-.ontheway-card {
+.grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px;
+}
+
+.card {
   background: var(--CARD_BG);
   padding: 0.5rem;
 }
 
-.ontheway-card p {
+.card p {
   margin: 0;
 }
 
-.ontheway-hasarrived-btn{
+.hasarrived-btn{
   background: var(--SUCCESS_GREEN);
   cursor: pointer;
   margin-top: 0.5rem;

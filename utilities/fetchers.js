@@ -1,7 +1,7 @@
 export const getLocations = async () => {
   //TODO: Error handling
-  const response = await fetch("/api/locations")
-  return await response.json()
+  const res = await fetch("/api/locations")
+  return await res.json()
 }
 
 export const postLocation = async name => {
@@ -9,5 +9,10 @@ export const postLocation = async name => {
     method: "POST",
     body: JSON.stringify({ name }),
   })
+  return await res.json()
+}
+
+export const getItemsForLocation = async location => {
+  const res = await fetch("/api/items")
   return await res.json()
 }
