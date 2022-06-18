@@ -8,12 +8,14 @@ import {
 import { useMutation, useQuery, useQueryClient } from "react-query"
 import { useGlobalState } from "../../state/GlobalStateContext"
 
-export const useModal = () => {
+export const useModal = (item) => {
   const queryClient = useQueryClient()
   const { data: locations } = useQuery("locations", getLocations)
   const { modalMode, setModalMode, selectedLocation } = useGlobalState()
-  const inputRef = useRef()
-  const inputRef2 = useRef()
+
+  const textInputRef = useRef()
+  const selectInputRef = useRef()
+
   let jsx, fetcher
 
   switch (modalMode) {
@@ -21,37 +23,41 @@ export const useModal = () => {
       jsx = (
         <>
           <p className={style["title"]}>Namn på ny plats:</p>
-          <input type="text" className={style["input"]} ref={inputRef} />
+          <input type="text" className={style["input"]} ref={textInputRef} />
         </>
       )
       fetcher = postLocation
       break
     case "send":
       const otherLocations = locations.filter(
-        item => item.name !== selectedLocation
+        (item) => item.name !== selectedLocation
       )
       jsx = (
         <>
           <p className={style["title"]}>Skicka till:</p>
-          <select className={style["select"]} ref={inputRef}>
-            {otherLocations.map(item => (
-              <option value={item.name} key={item.id}>
+          <select className={style["select"]} ref={selectInputRef}>
+            {otherLocations.map((item) => (
+              <option value={item.id} key={item.id}>
                 {item.name}
               </option>
             ))}
           </select>
           <label htmlFor="tracking">Tracking</label>
-          <input type="text" className={style["input"]} ref={inputRef2} id="tracking" />
+          <input
+            type="text"
+            className={style["input"]}
+            ref={textInputRef}
+            id="tracking"
+          />
         </>
       )
-      //TODO: fix this shit
       fetcher = sendItem
       break
     case "enable":
       jsx = (
         <>
           <p className={style["title"]}>Ange hostname:</p>
-          <input type="text" className={style["input"]} ref={inputRef} />
+          <input type="text" className={style["input"]} ref={textInputRef} />
         </>
       )
       fetcher = null
@@ -63,10 +69,14 @@ export const useModal = () => {
     },
   })
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault()
-    if (inputRef.current.value) {
-      mutate(inputRef.current.value)
+    if (textInputRef.current.value) {
+      mutate({
+        textInput: textInputRef.current.value,
+        selectInput: selectInputRef.current?.value,
+        itemId: item?.id,
+      })
       setModalMode(null)
     }
   }

@@ -7,7 +7,11 @@
 }
 
 .table-row {
-  background: #bbbbbb;
+  background: var(--CARD_BG);
+}
+
+.table-row:nth-child(odd){
+  background: var(--CONTENT_BG);
 }
 
 .table-row td {

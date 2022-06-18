@@ -2,6 +2,8 @@ import prisma from "../../../services/prisma/client.ts"
 
 export default async function getItemsForLocation(req, res) {
   const body = JSON.parse(req.body)
+  if (!body?.location)
+    return res.status(400).json({ message: "Bad user request" })
 
   try {
     const items =

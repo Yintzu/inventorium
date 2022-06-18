@@ -5,13 +5,25 @@
 }
 
 .icon-wrapper {
-  height: 40px;
+  height: 46px;
   display: flex;
-  gap: 1rem;
+  gap: 5px;
 }
 
-.icon {
+.icon,
+.refresh {
+  padding: 5px;
   height: 100%;
   aspect-ratio: 1 / 1;
   cursor: pointer;
+  border-radius: 5px;
+}
+
+.refresh {
+  margin-left: auto;
+}
+
+.icon:hover,
+.refresh:hover {
+  background: var(--CARD_BG);
 }

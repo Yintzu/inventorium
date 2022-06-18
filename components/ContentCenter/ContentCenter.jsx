@@ -14,8 +14,6 @@ export default function ContentCenter() {
     () => getItemsForLocation(selectedLocation?.id)
   )
 
-  console.log("itemsForLocation", itemsForLocation)
-
   return (
     <div className="content-center">
       {selectedLocation && (

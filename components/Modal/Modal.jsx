@@ -2,9 +2,9 @@ import { useGlobalState } from "../../state/GlobalStateContext"
 import style from "./Modal.module.css"
 import { useModal } from "./useModal"
 
-export default function Modal() {
+export default function Modal({ item }) {
   const { setModalMode } = useGlobalState()
-  const [jsx, handleSubmit] = useModal()
+  const [jsx, handleSubmit] = useModal(item)
 
   const handleOverlayClick = e => {
     if (e.target.className.includes("overlay")) setModalMode(null)

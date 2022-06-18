@@ -1,6 +1,6 @@
 
 .location {
-  background: #bbbbbb;
+  background: var(--CARD_BG);
   padding: 1rem;
   border-radius: 5px;
   cursor: pointer;

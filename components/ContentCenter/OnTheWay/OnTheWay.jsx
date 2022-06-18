@@ -6,32 +6,22 @@ import { useGlobalState } from "../../../state/GlobalStateContext"
 import OutgoingCard from "./OutgoingCard/OutgoingCard"
 import IncomingCard from "./IncomingCard/IncomingCard"
 
-export default function OnTheWay({ itemsForLocation }) {
+export default function OnTheWay({ itemsForLocation = [] }) {
   const { selectedLocation } = useGlobalState()
   const { data: locations = [] } = useQuery("locations", getLocations)
+
+  console.log("itemsForLocation", itemsForLocation)
 
   return (
     <div className={style["container-wrapper"]}>
       <div className={centerStyle["container"]}>
         <p className={centerStyle["container-title"]}>På väg in</p>
         <div className={style["grid"]}>
-          {itemsForLocation?.map(item => {
-            if (item.sendto && item.sendto === selectedLocation.id) {
-              return (
-                <IncomingCard item={item} locations={locations} key={item.id} />
-              )
-            }
-          })}
-        </div>
-      </div>
-      <div className={centerStyle["container"]}>
-        <div>
-          <p className={centerStyle["container-title"]}>På väg ut</p>
-          <div className={style["grid"]}>
-            {itemsForLocation?.map(item => {
-              if (item.sendto && item.sendto !== selectedLocation.id) {
+          {Array.isArray(itemsForLocation) &&
+            itemsForLocation.map((item) => {
+              if (item.sendto && item.sendto === selectedLocation.id) {
                 return (
-                  <OutgoingCard
+                  <IncomingCard
                     item={item}
                     locations={locations}
                     key={item.id}
@@ -39,6 +29,24 @@ export default function OnTheWay({ itemsForLocation }) {
                 )
               }
             })}
+        </div>
+      </div>
+      <div className={centerStyle["container"]}>
+        <div>
+          <p className={centerStyle["container-title"]}>På väg ut</p>
+          <div className={style["grid"]}>
+            {Array.isArray(itemsForLocation) &&
+              itemsForLocation.map((item) => {
+                if (item.sendto && item.sendto !== selectedLocation.id) {
+                  return (
+                    <OutgoingCard
+                      item={item}
+                      locations={locations}
+                      key={item.id}
+                    />
+                  )
+                }
+              })}
           </div>
         </div>
       </div>

@@ -3,9 +3,10 @@ import date from datetime
 
 export default async function main(req, res) {
     const jssend = JSON.parse(req.body)
-    if (jssend != null) {
+    if (!jssend?.sendto || !jssend?.itemid) return res.status(400).json({message: "Bad user request"})
+
         try {
-            await prisma.$queryRaw`with rows as(
+            const reply = await prisma.$queryRaw`with rows as(
                 INSERT INTO shipping (sent, sendto, tracking)
                 VALUES ('${date.today()}', ${jssend.sendto}, ${jssend.tracking}) RETURNING id)
                 UPDATE items
@@ -16,5 +17,5 @@ export default async function main(req, res) {
             console.error("Error talking to DB: ", error.message)
             res.status(500).json({ error: error.message })
         }
-    }
+    
 }
