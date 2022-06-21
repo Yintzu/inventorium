@@ -1,17 +1,18 @@
-import prisma from "../../../services/prisma/client.ts"
+import prisma from "../../services/prisma/client.ts"
 
 export default async function main(req, res) {
-  const body = JSON.parse(req.body)
+  const jsitem = JSON.parse(req.body)
 
   try {
-    const items =
+    const item =
       await prisma.$queryRaw`WITH rows AS (
         SELECT id FROM items
       WHERE productid = ${body.productid} AND locationid = ${body.locationid} AND inuse = false
         LIMIT 1)
-      DELETE FROM items
+      UPDATE items
+      SET inuse = true
       WHERE id IN (SELECT id FROM rows)`
-    res.status(200).json(items)
+    res.status(200).json(reply)
   } catch (error) {
     console.error("Error talking to DB: ", error.message)
     res.status(500).json({ error: error.message })
