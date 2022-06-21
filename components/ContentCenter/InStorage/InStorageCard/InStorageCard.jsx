@@ -1,9 +1,20 @@
+import { useMutation, useQueryClient } from "react-query"
 import { useGlobalState } from "../../../../state/GlobalStateContext"
+import { deleteItem, insertItem } from "../../../../utilities/fetchers"
 import Modal from "../../../Modal/Modal"
 import style from "../InStorage.module.css"
 
 export default function InStorageCard({ item, itemsForLocation }) {
-  const { modalMode, setModalMode } = useGlobalState()
+  const queryClient = useQueryClient()
+  const { modalMode, setModalMode, selectedLocation } = useGlobalState()
+
+  const mutationSettings = {
+    onSettled: () => {
+      queryClient.refetchQueries()
+    },
+  }
+  const { mutate: increment } = useMutation(insertItem, mutationSettings)
+  const { mutate: decrement } = useMutation(deleteItem, mutationSettings)
 
   return (
     <div className={style["card"]}>
@@ -18,8 +29,28 @@ export default function InStorageCard({ item, itemsForLocation }) {
           }
         </p>
         <div className={style["btn-wrapper"]}>
-          <button className={style["decrement"]}>-</button>
-          <button className={style["increment"]}>+</button>
+          <button
+            className={style["decrement"]}
+            onClick={() =>
+              decrement({
+                locationid: selectedLocation.id,
+                productid: item.productid,
+              })
+            }
+          >
+            -
+          </button>
+          <button
+            className={style["increment"]}
+            onClick={() =>
+              increment({
+                location: selectedLocation.id,
+                product: item.productid,
+              })
+            }
+          >
+            +
+          </button>
         </div>
       </div>
       <div className={style["btn-wrapper"]}>

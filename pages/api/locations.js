@@ -1,6 +1,6 @@
 import prisma from "../../services/prisma/client.ts"
 
-export default async function locations(req, res) {
+export default async function main(req, res) {
   if (req.method === "POST") {
     const jsname = JSON.parse(req.body)
     if (!jsname?.name)

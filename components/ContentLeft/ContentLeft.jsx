@@ -27,7 +27,8 @@ export default function ContentLeft() {
         <img
           src="/addItem.svg"
           className={style["icon"]}
-          title="Lägg till item"
+          title="Lägg till produkt"
+          onClick={() => setModalMode("addProduct")}
         />
         <img
           src="/refresh.svg"
@@ -36,7 +37,7 @@ export default function ContentLeft() {
           onClick={() => queryClient.refetchQueries()}
         />
       </div>
-      {modalMode === "addLocation" && <Modal />}
+      {["addLocation", "addProduct"].includes(modalMode) && <Modal />}
     </div>
   )
 }

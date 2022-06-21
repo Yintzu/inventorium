@@ -1,4 +1,4 @@
-import prisma from "../../services/prisma/client.ts"
+import prisma from "../../../services/prisma/client.ts"
 
 export default async function main(req, res) {
   const jsitem = JSON.parse(req.body)
@@ -6,8 +6,8 @@ export default async function main(req, res) {
     try {
       const reply = await prisma.items.create({
         data: {
-          product: jsitem.product,
-          location: jsitem.location,
+          productid: jsitem.product,
+          locationid: jsitem.location,
           inuse: false,
         },
       })

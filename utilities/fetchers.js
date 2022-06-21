@@ -1,5 +1,5 @@
+//TODO: Error handling
 export const getLocations = async () => {
-  //TODO: Error handling
   const res = await fetch("/api/locations")
   return await res.json()
 }
@@ -37,5 +37,32 @@ export const sendItem = async ({ itemId, textInput, selectInput }) => {
       tracking: textInput,
     }),
   })
+  return await res.json()
+}
+
+export const insertItem = async ({ productid, locationid }) => {
+  const res = await fetch("/api/items/insert", {
+    method: "POST",
+    body: JSON.stringify({
+      productid: Number(productid),
+      locationid,
+    }),
+  })
+  return await res.json()
+}
+
+export const deleteItem = async ({ productid, locationid }) => {
+  const res = await fetch("/api/items/delete", {
+    method: "DELETE",
+    body: JSON.stringify({
+      productid,
+      locationid,
+    }),
+  })
+  return await res.json()
+}
+
+export const getAllProducts = async () => {
+  const res = await fetch("/api/products")
   return await res.json()
 }

@@ -28,6 +28,15 @@ export const useModal = (item) => {
       )
       fetcher = postLocation
       break
+    case "addProduct":
+      jsx = (
+        <>
+          <p className={style["title"]}>Lägg till produkt:</p>
+          <input type="text" className={style["input"]} ref={textInputRef} />
+        </>
+      )
+      break
+      fetcher = null
     case "send":
       const otherLocations = locations.filter(
         (item) => item.id !== selectedLocation.id
@@ -35,11 +44,7 @@ export const useModal = (item) => {
       jsx = (
         <>
           <p className={style["title"]}>Skicka till:</p>
-          <select
-            className={style["select"]}
-            ref={selectInputRef}
-            onChange={(e) => console.log(e.target.value)}
-          >
+          <select className={style["select"]} ref={selectInputRef}>
             {otherLocations.map((location) => (
               <option value={location.id} key={location.id}>
                 {location.name}

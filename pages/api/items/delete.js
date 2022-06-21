@@ -1,11 +1,10 @@
 import prisma from "../../../services/prisma/client.ts"
 
-export default async function getItemsForLocation(req, res) {
+export default async function main(req, res) {
   const body = JSON.parse(req.body)
 
   try {
-    const items =
-      await prisma.$queryRaw`WITH rows AS (
+    const items = await prisma.$queryRaw`WITH rows AS (
         SELECT id FROM items
       WHERE productid = ${body.productid} AND locationid = ${body.locationid}
         LIMIT 1)
