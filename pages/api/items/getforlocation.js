@@ -2,13 +2,15 @@ import prisma from "../../../services/prisma/client.ts"
 
 export default async function getItemsForLocation(req, res) {
   const body = JSON.parse(req.body)
+  if (!body?.location)
+    return res.status(400).json({ message: "Bad user request" })
 
   try {
     const items =
-      await prisma.$queryRaw`SELECT i.id, p.name, i.locationid, s.sendto FROM items i
+      await prisma.$queryRaw`SELECT i.id, p.name, i.locationid, s.sendto, i.inuse, s.tracking FROM items i
         JOIN products p ON p.id = i.productid
         LEFT JOIN shipping s ON i.shippingid = s.id
-        WHERE s.sendto = ${body.location} OR i.location = ${body.location}`
+        WHERE s.sendto = ${body.location} OR i.locationid = ${body.location}`
 
     res.status(200).json(items)
   } catch (error) {

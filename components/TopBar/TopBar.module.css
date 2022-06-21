@@ -1,5 +1,5 @@
 .top-bar {
-  background: #642323;
+  background: linear-gradient(0deg, #581e1e, #8d2f2f);
   height: var(--TOP_BAR_HEIGHT);
   padding: 0 1rem;
   color: #fff;

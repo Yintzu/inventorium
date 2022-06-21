@@ -4,13 +4,10 @@ import ContentRight from "../components/ContentRight/ContentRight.jsx"
 import ContentCenter from "../components/ContentCenter/ContentCenter.jsx"
 import TopBar from "../components/TopBar/TopBar.jsx"
 import Login from "../components/Login/Login.jsx"
-import Modal from "../components/Modal/Modal.jsx"
 import { useAuth } from "../state/AuthContext.jsx"
-import { useGlobalState } from "../state/GlobalStateContext.jsx"
 
 export default function Home() {
   const { user } = useAuth()
-  const { modalMode } = useGlobalState()
 
   return (
     <div>
@@ -27,7 +24,6 @@ export default function Home() {
             <ContentLeft />
             <ContentCenter />
             <ContentRight />
-            {modalMode && <Modal />}
           </div>
         ) : (
           <Login />

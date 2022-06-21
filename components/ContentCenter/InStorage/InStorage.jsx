@@ -1,10 +1,8 @@
-import { useGlobalState } from "../../../state/GlobalStateContext"
+import InStorageCard from "./InStorageCard/InStorageCard"
 import centerStyle from "../ContentCenter.module.css"
 import style from "./InStorage.module.css"
 
-export default function InStorage({ itemsForLocation }) {
-  const { setModalMode } = useGlobalState()
-
+export default function InStorage({ itemsForLocation = [] }) {
   return (
     <div className={`${centerStyle["container"]}`}>
       <div className={style["title-wrapper"]}>
@@ -14,36 +12,18 @@ export default function InStorage({ itemsForLocation }) {
         <span className={style["add-btn"]}>+</span>
       </div>
       <div className={style["grid"]}>
-        {itemsForLocation?.map(item => {
-          if (!item.sendto) {
-            return (
-              <div className={style["card"]} key={item.id}>
-                <p className={style["card-title"]}>{item.name}</p>
-                <div className={style["amount-wrapper"]}>
-                  <p className={style["amount"]}>Antal: </p>
-                  <div className={style["btn-wrapper"]}>
-                    <button className={style["decrement"]}>-</button>
-                    <button className={style["increment"]}>+</button>
-                  </div>
-                </div>
-                <div className={style["btn-wrapper"]}>
-                  <button
-                    className={style["send"]}
-                    onClick={() => setModalMode("send")}
-                  >
-                    Skicka ➡
-                  </button>
-                  <button
-                    className={style["enable"]}
-                    onClick={() => setModalMode("enable")}
-                  >
-                    Sätt i drift ⬇
-                  </button>
-                </div>
-              </div>
-            )
-          }
-        })}
+        {Array.isArray(itemsForLocation) &&
+          itemsForLocation.map((item) => {
+            if (!item.sendto) {
+              return (
+                <InStorageCard
+                  key={item.id}
+                  item={item}
+                  itemsForLocation={itemsForLocation}
+                />
+              )
+            }
+          })}
       </div>
     </div>
   )

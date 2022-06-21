@@ -14,8 +14,6 @@ export default function ContentCenter() {
     () => getItemsForLocation(selectedLocation?.id)
   )
 
-  console.log("itemsForLocation", itemsForLocation)
-
   return (
     <div className="content-center">
       {selectedLocation && (
@@ -24,7 +22,7 @@ export default function ContentCenter() {
           <div className={style["containers"]}>
             <OnTheWay itemsForLocation={itemsForLocation} />
             <InStorage itemsForLocation={itemsForLocation} />
-            <InUse />
+            <InUse itemsForLocation={itemsForLocation} />
           </div>
         </>
       )}

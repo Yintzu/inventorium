@@ -14,6 +14,7 @@
 .card {
   background: var(--CARD_BG);
   padding: 0.5rem;
+  box-shadow: var(--BOX_SHADOW);
 }
 
 .card p {

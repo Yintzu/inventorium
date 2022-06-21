@@ -1,17 +1,19 @@
 import style from "./ContentLeft.module.css"
 import Location from "./Location/Location"
-import { useQuery } from "react-query"
+import { useQuery, useQueryClient } from "react-query"
 import { getLocations } from "../../utilities/fetchers"
 import { useGlobalState } from "../../state/GlobalStateContext"
+import Modal from "../Modal/Modal"
 
 export default function ContentLeft() {
   const { data: locations = [] } = useQuery("locations", getLocations)
-  const { showSidebarMobile, setModalMode } = useGlobalState()
+  const { showSidebarMobile, modalMode, setModalMode } = useGlobalState()
+  const queryClient = useQueryClient()
 
   return (
     <div className={`content-left ${showSidebarMobile && "content-left-open"}`}>
       <div className={style["content-left-locations-wrapper"]}>
-        {locations.map(item => (
+        {locations.map((item) => (
           <Location key={item.id} location={item} />
         ))}
       </div>
@@ -22,8 +24,19 @@ export default function ContentLeft() {
           className={style["icon"]}
           onClick={() => setModalMode("addLocation")}
         />
-        <img src="/addItem.svg" className={style["icon"]} title="Lägg till item"/>
+        <img
+          src="/addItem.svg"
+          className={style["icon"]}
+          title="Lägg till item"
+        />
+        <img
+          src="/refresh.svg"
+          className={style["refresh"]}
+          title="Uppdatera all data"
+          onClick={() => queryClient.refetchQueries()}
+        />
       </div>
+      {modalMode === "addLocation" && <Modal />}
     </div>
   )
 }
