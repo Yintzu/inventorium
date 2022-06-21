@@ -5,8 +5,8 @@ export default async function getItemsForLocation(req, res) {
 
   try {
     const items =
-      await prisma.$queryRaw`SELECT i.id, p.name, i.location, s.sendto FROM items i
-        JOIN products p ON p.id = i.product
+      await prisma.$queryRaw`SELECT i.id, p.name, i.locationid, s.sendto FROM items i
+        JOIN products p ON p.id = i.productid
         LEFT JOIN shipping s ON i.shippingid = s.id
         WHERE s.sendto = ${body.location} OR i.location = ${body.location}`
 
