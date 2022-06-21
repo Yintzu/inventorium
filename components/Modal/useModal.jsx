@@ -3,6 +3,7 @@ import style from "./Modal.module.css"
 import {
   getLocations,
   postLocation,
+  putInUse,
   sendItem,
 } from "../../utilities/fetchers.js"
 import { useMutation, useQuery, useQueryClient } from "react-query"
@@ -69,7 +70,7 @@ export const useModal = (item) => {
           <input type="text" className={style["input"]} ref={textInputRef} />
         </>
       )
-      fetcher = null
+      fetcher = putInUse
   }
 
   const { mutate } = useMutation(fetcher, {
@@ -85,6 +86,8 @@ export const useModal = (item) => {
         textInput: textInputRef.current.value,
         selectInput: selectInputRef.current?.value,
         itemId: item?.id,
+        productId: item?.productid,
+        locationId: selectedLocation?.id,
       })
       setModalMode(null)
     }

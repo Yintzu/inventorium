@@ -44,8 +44,8 @@ export default function InStorageCard({ item, itemsForLocation }) {
             className={style["increment"]}
             onClick={() =>
               increment({
-                location: selectedLocation.id,
-                product: item.productid,
+                locationid: selectedLocation.id,
+                productid: item.productid,
               })
             }
           >

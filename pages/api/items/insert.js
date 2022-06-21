@@ -2,12 +2,13 @@ import prisma from "../../../services/prisma/client.ts"
 
 export default async function main(req, res) {
   const jsitem = JSON.parse(req.body)
+  console.log('jsitem', jsitem)
   if (jsitem != null) {
     try {
       const reply = await prisma.items.create({
         data: {
-          productid: jsitem.product,
-          locationid: jsitem.location,
+          productid: jsitem.productid,
+          locationid: jsitem.locationid,
           inuse: false,
         },
       })

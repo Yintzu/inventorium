@@ -66,3 +66,14 @@ export const getAllProducts = async () => {
   const res = await fetch("/api/products")
   return await res.json()
 }
+
+export const putInUse = async ({ productId, locationId }) => {
+  const res = await fetch("/api/items/putinuse", {
+    method: "POST",
+    body: JSON.stringify({
+      productid: productId,
+      locationid: locationId,
+    }),
+  })
+  return await res.json()
+}
