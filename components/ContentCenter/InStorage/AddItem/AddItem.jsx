@@ -8,6 +8,8 @@ export default function AddItem() {
   const { data: products = [] } = useQuery("products", getAllProducts)
   const { selectedLocation } = useGlobalState()
 
+  if (!Array.isArray(products)) return null
+
   const { mutate } = useMutation(insertItem, {
     onSettled: () => {
       queryClient.refetchQueries()
