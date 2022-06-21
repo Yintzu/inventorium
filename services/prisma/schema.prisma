@@ -15,12 +15,12 @@ model locations {
 
 model items {
   id         Int      @id @default(autoincrement())
-  product    Int
+  productid  Int
   serial     String?  @db.VarChar(255)
-  location   Int
+  locationid Int
   shippingid Int?
   inuse      Boolean  @default(false)
-  products   products @relation(fields: [product], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_product")
+  products   products @relation(fields: [productid], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_product")
 }
 
 model products {

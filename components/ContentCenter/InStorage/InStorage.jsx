@@ -15,7 +15,13 @@ export default function InStorage({ itemsForLocation = [] }) {
         {Array.isArray(itemsForLocation) &&
           itemsForLocation.map((item) => {
             if (!item.sendto) {
-              return <InStorageCard key={item.id} item={item} />
+              return (
+                <InStorageCard
+                  key={item.id}
+                  item={item}
+                  itemsForLocation={itemsForLocation}
+                />
+              )
             }
           })}
       </div>

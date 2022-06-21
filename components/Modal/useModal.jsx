@@ -30,15 +30,19 @@ export const useModal = (item) => {
       break
     case "send":
       const otherLocations = locations.filter(
-        (item) => item.name !== selectedLocation
+        (item) => item.id !== selectedLocation.id
       )
       jsx = (
         <>
           <p className={style["title"]}>Skicka till:</p>
-          <select className={style["select"]} ref={selectInputRef}>
-            {otherLocations.map((item) => (
-              <option value={item.id} key={item.id}>
-                {item.name}
+          <select
+            className={style["select"]}
+            ref={selectInputRef}
+            onChange={(e) => console.log(e.target.value)}
+          >
+            {otherLocations.map((location) => (
+              <option value={location.id} key={location.id}>
+                {location.name}
               </option>
             ))}
           </select>

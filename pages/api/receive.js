@@ -5,10 +5,10 @@ export default async function main(req, res) {
   if (!jsitem?.id) return res.status(400).json({ message: "Bad user request" })
 
   try {
-    const reply = await prisma.items.update({
-      where: { id: jsitem.id },
-      data: { shippingid: null },
-    })
+    const reply = await prisma.$executeRaw`UPDATE items
+    SET locationid = (SELECT sendto FROM shipping
+    WHERE id = (SELECT shippingid FROM items WHERE id = ${jsitem.id})), shippingid = NULL
+    WHERE id = ${jsitem.id}`
     res.status(200).json(reply)
   } catch (error) {
     console.error("Error talking to DB: ", error.message)

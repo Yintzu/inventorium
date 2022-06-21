@@ -13,14 +13,14 @@ export const postLocation = async ({ textInput }) => {
 }
 
 export const getItemsForLocation = async (location) => {
-  const res = await fetch("/api/items/getForLocation", {
+  const res = await fetch("/api/items/getforlocation", {
     method: "POST",
     body: JSON.stringify({ location }),
   })
   return await res.json()
 }
 
-export const recieveItem = async (id) => {
+export const receiveItem = async (id) => {
   const res = await fetch("/api/receive", {
     method: "POST",
     body: JSON.stringify({ id }),
@@ -33,7 +33,7 @@ export const sendItem = async ({ itemId, textInput, selectInput }) => {
     method: "POST",
     body: JSON.stringify({
       itemid: itemId,
-      sendto: selectInput,
+      sendto: Number(selectInput),
       tracking: textInput,
     }),
   })

@@ -1,12 +1,11 @@
 import { useMutation, useQueryClient } from "react-query"
-import { recieveItem } from "../../../../utilities/fetchers"
+import { receiveItem } from "../../../../utilities/fetchers"
 import style from "../OnTheWay.module.css"
 
 export default function OutgoingCard({ item, locations }) {
-  console.log("item", item)
   const queryClient = useQueryClient()
 
-  const { mutate } = useMutation(() => recieveItem(item.id), {
+  const { mutate } = useMutation(() => receiveItem(item.id), {
     onSettled: () => {
       queryClient.refetchQueries()
     },
@@ -17,8 +16,9 @@ export default function OutgoingCard({ item, locations }) {
       <p>{item.name}</p>
       <p>
         Skickat till:{" "}
-        {locations.find(location => location.id === item.sendto).name}
+        {locations.find((location) => location.id === item.sendto).name}
       </p>
+      <p>Tracking: {item.tracking}</p>
       <button className={style["hasarrived-btn"]} onClick={mutate}>
         Har ankommit
       </button>
