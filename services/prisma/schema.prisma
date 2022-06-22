@@ -20,6 +20,7 @@ model items {
   locationid Int
   shippingid Int?
   inuse      Boolean  @default(false)
+  hostname   String?  @db.VarChar(255)
   products   products @relation(fields: [productid], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_product")
 }
 
