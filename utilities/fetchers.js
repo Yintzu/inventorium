@@ -77,3 +77,18 @@ export const putInUse = async ({ productId, locationId }) => {
   })
   return await res.json()
 }
+
+export const putOutOfUse = async (itemId) => {
+  const res = await fetch("/api/items/outofuse", {
+    method: "POST",
+    body: JSON.stringify({ id: itemId }),
+  })
+  return await res.json()
+}
+
+export const addProduct = async ({ textInput }) => {
+  const res = await fetch("/api/products", {
+    method: "POST",
+    body: JSON.stringify({ name: textInput }),
+  })
+}

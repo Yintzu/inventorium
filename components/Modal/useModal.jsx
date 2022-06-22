@@ -1,6 +1,7 @@
 import { useRef } from "react"
 import style from "./Modal.module.css"
 import {
+  addProduct,
   getLocations,
   postLocation,
   putInUse,
@@ -32,12 +33,12 @@ export const useModal = (item) => {
     case "addProduct":
       jsx = (
         <>
-          <p className={style["title"]}>Lägg till produkt:</p>
+          <p className={style["title"]}>Namn på ny produkt:</p>
           <input type="text" className={style["input"]} ref={textInputRef} />
         </>
       )
+      fetcher = addProduct
       break
-      fetcher = null
     case "send":
       const otherLocations = locations.filter(
         (item) => item.id !== selectedLocation.id

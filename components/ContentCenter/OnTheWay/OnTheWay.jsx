@@ -10,8 +10,6 @@ export default function OnTheWay({ itemsForLocation = [] }) {
   const { selectedLocation } = useGlobalState()
   const { data: locations = [] } = useQuery("locations", getLocations)
 
-  console.log("itemsForLocation", itemsForLocation)
-
   return (
     <div className={style["container-wrapper"]}>
       <div className={centerStyle["container"]}>

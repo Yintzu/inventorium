@@ -24,7 +24,7 @@ export default function InStorageCard({ item, itemsForLocation }) {
           Antal:{" "}
           {
             itemsForLocation.filter(
-              (locationItem) => locationItem.name === item.name
+              (locationItem) => (locationItem.name === item.name && !locationItem.inuse)
             ).length
           }
         </p>
