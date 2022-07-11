@@ -6,10 +6,6 @@ import AddItem from "./AddItem/AddItem"
 export default function InStorage({ itemsForLocation = [] }) {
   if (!Array.isArray(itemsForLocation)) return null
 
-  const arrayUniqueByKey = [
-    ...new Map(itemsForLocation.map((item) => [item["name"], item])).values(),
-  ]
-
   return (
     <div className={`${centerStyle["container"]}`}>
       <div className={style["title-wrapper"]}>
@@ -40,18 +36,6 @@ export default function InStorage({ itemsForLocation = [] }) {
             })}
         </tbody>
       </table>
-
-      {/* {arrayUniqueByKey.map((item) => {
-        if (!item.sendto) {
-          return (
-            <InStorageCard
-              key={item.id}
-              item={item}
-              itemsForLocation={itemsForLocation}
-            />
-          )
-        }
-      })} */}
     </div>
   )
 }

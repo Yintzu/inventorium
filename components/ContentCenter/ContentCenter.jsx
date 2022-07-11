@@ -11,7 +11,8 @@ export default function ContentCenter() {
 
   const { data: itemsForLocation } = useQuery(
     ["itemsForLocation", selectedLocation],
-    () => getItemsForLocation(selectedLocation?.id)
+    () => getItemsForLocation(selectedLocation?.id),
+    { enabled: !!selectedLocation }
   )
 
   return (

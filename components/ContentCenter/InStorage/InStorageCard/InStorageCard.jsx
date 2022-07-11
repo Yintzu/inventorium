@@ -9,7 +9,7 @@ import style from "../InStorage.module.css"
 export default function InStorageCard({ item }) {
   const [showModal, setShowModal] = useState(false)
   const queryClient = useQueryClient()
-  const { modalMode, setModalMode, selectedLocation } = useGlobalState()
+  const { modalMode, setModalMode } = useGlobalState()
 
   const mutationSettings = {
     onSettled: () => {
@@ -47,8 +47,7 @@ export default function InStorageCard({ item }) {
               className={style["enable"]}
               onClick={() =>
                 enable({
-                  productId: item.productid,
-                  locationId: selectedLocation.id,
+                  itemId: item.id,
                 })
               }
             >
