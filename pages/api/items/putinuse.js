@@ -4,14 +4,10 @@ export default async function main(req, res) {
   const body = JSON.parse(req.body)
   console.log('body', body)
   try {
-    const item = await prisma.$queryRaw`WITH rows AS (
-        SELECT id FROM items
-      WHERE productid = ${body.productid} AND locationid = ${body.locationid} AND inuse = false
-        LIMIT 1)
-      UPDATE items
-      SET inuse = true
-      WHERE id IN (SELECT id FROM rows)`
-      console.log('finish')
+    const body = await prisma.items.update({
+        where: { id: body.id },
+        data: { inuse: true },
+      })
     res.status(200).json(item)
   } catch (error) {
     console.error("Error talking to DB: ", error.message)
