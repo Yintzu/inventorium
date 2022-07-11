@@ -1,7 +1,8 @@
-import { useRef } from "react"
+import { useEffect, useRef } from "react"
 import style from "./Modal.module.css"
 import {
   addProduct,
+  editSerial,
   getLocations,
   postLocation,
   putInUse,
@@ -72,7 +73,25 @@ export const useModal = (item) => {
         </>
       )
       fetcher = putInUse
+      break
+    case "edit":
+      jsx = (
+        <>
+          <p className={style["title"]}>Ändra serienummer:</p>
+          <input
+            type="text"
+            className={style["input"]}
+            defaultValue={item.serial}
+            ref={textInputRef}
+          />
+        </>
+      )
+      fetcher = editSerial
   }
+
+  useEffect(() => {
+    textInputRef.current.focus()
+  }, [])
 
   const { mutate } = useMutation(fetcher, {
     onSettled: () => {

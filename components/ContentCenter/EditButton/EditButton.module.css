@@ -1,0 +1,12 @@
+.icon {
+  width: 100%;
+}
+
+.button {
+  width: 26px;
+  background: var(--ORANGE);
+  border: var(--BUTTON_BORDER);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}

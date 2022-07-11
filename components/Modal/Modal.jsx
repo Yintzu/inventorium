@@ -30,7 +30,7 @@ export default function Modal({ item }) {
               Avbryt
             </button>
             <button className={style["confirm"]} type="submit">
-              Lägg till
+              OK
             </button>
           </div>
         </form>

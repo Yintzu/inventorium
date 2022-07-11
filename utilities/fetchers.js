@@ -92,3 +92,11 @@ export const addProduct = async ({ textInput }) => {
     body: JSON.stringify({ name: textInput }),
   })
 }
+
+export const editSerial = async ({ itemId, textInput }) => {
+  const res = await fetch("/api/items/editserial", {
+    method: "PUT",
+    body: JSON.stringify({ id: itemId, serial: textInput }),
+  })
+  return await res.json()
+}

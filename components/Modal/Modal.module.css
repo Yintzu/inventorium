@@ -54,6 +54,7 @@
 
 .cancel,
 .confirm {
+  min-width: 72px;
   cursor: pointer;
   padding: 0.5rem 1rem;
   border: var(--BUTTON_BORDER);

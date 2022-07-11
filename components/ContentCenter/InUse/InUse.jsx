@@ -2,8 +2,13 @@ import style from "./InUse.module.css"
 import centerStyle from "../ContentCenter.module.css"
 import { useMutation, useQueryClient } from "react-query"
 import { putOutOfUse } from "../../../utilities/fetchers"
+import EditButton from "../EditButton/EditButton"
+import Modal from "../../Modal/Modal"
+import { useGlobalState } from "../../../state/GlobalStateContext"
 
 export default function InUse({ itemsForLocation = [] }) {
+  const { modalMode } = useGlobalState()
+
   const queryClient = useQueryClient()
 
   const mutationSettings = {
@@ -21,7 +26,7 @@ export default function InUse({ itemsForLocation = [] }) {
           <tr className={style["table-headers"]}>
             <th>Hostname</th>
             <th>Modell</th>
-            {/* <th>Serienummer</th> */}
+            <th>Serienummer</th>
           </tr>
         </thead>
         <tbody className={style["table-body"]}>
@@ -31,16 +36,20 @@ export default function InUse({ itemsForLocation = [] }) {
                 return (
                   <tr className={style["table-row"]} key={i}>
                     <td>Ej implementerat</td>
+                    <td>{item.name}</td>
                     <td className={style["justify-between"]}>
-                      <span>{item.name}</span>
-                      <button
-                        className={style["remove-btn"]}
-                        onClick={() => mutate(item.id)}
-                      >
-                        Ta ur drift
-                      </button>
+                      <span>{item.serial}</span>
+                      <div className={style["button-wrapper"]}>
+                        <button
+                          className={style["remove-btn"]}
+                          onClick={() => mutate(item.id)}
+                        >
+                          Ta ur drift
+                        </button>
+                        <EditButton />
+                      </div>
                     </td>
-                    {/* <td>FSF94UR9U4</td> */}
+                    {modalMode === "edit" && <Modal item={item} />}
                   </tr>
                 )
             })}
