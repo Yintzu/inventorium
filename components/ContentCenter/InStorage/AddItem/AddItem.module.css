@@ -24,6 +24,6 @@
   border-radius: 3px;
 }
 
-.add-btn:hover {
+.add-btn:hover, .add-btn:focus-within {
   background: var(--CARD_BG);
 }

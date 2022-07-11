@@ -17,7 +17,7 @@ export default function AddItem() {
   })
 
   const handleSelect = (e) => {
-    mutate({ location: selectedLocation.id, product: e.target.value })
+    mutate({ locationid: selectedLocation.id, productid: e.target.value })
     e.target.value = ""
   }
 

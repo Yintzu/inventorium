@@ -65,15 +65,6 @@ export const useModal = (item) => {
       )
       fetcher = sendItem
       break
-    case "enable":
-      jsx = (
-        <>
-          <p className={style["title"]}>Ange hostname:</p>
-          <input type="text" className={style["input"]} ref={textInputRef} />
-        </>
-      )
-      fetcher = putInUse
-      break
     case "edit":
       jsx = (
         <>

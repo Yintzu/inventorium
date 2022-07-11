@@ -19,19 +19,39 @@ export default function InStorage({ itemsForLocation = [] }) {
 
         <AddItem />
       </div>
-      <div className={style["grid"]}>
-        {arrayUniqueByKey.map((item) => {
-          if (!item.sendto) {
-            return (
-              <InStorageCard
-                key={item.id}
-                item={item}
-                itemsForLocation={itemsForLocation}
-              />
-            )
-          }
-        })}
-      </div>
+      <table className={style["table"]}>
+        <thead>
+          <tr className={style["table-headers"]}>
+            <th>Modell</th>
+            <th>Serienummer</th>
+          </tr>
+        </thead>
+        <tbody className={style["table-body"]}>
+          {Array.isArray(itemsForLocation) &&
+            itemsForLocation.map((item, i) => {
+              if (!item.inuse)
+                return (
+                  <InStorageCard
+                    key={item.id}
+                    item={item}
+                    itemsForLocation={itemsForLocation}
+                  />
+                )
+            })}
+        </tbody>
+      </table>
+
+      {/* {arrayUniqueByKey.map((item) => {
+        if (!item.sendto) {
+          return (
+            <InStorageCard
+              key={item.id}
+              item={item}
+              itemsForLocation={itemsForLocation}
+            />
+          )
+        }
+      })} */}
     </div>
   )
 }

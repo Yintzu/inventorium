@@ -2,7 +2,7 @@ import prisma from "../../../services/prisma/client.ts"
 
 export default async function main(req, res) {
   const body = JSON.parse(req.body)
-
+  console.log('body', body)
   try {
     const item = await prisma.$queryRaw`WITH rows AS (
         SELECT id FROM items
@@ -11,6 +11,7 @@ export default async function main(req, res) {
       UPDATE items
       SET inuse = true
       WHERE id IN (SELECT id FROM rows)`
+      console.log('finish')
     res.status(200).json(item)
   } catch (error) {
     console.error("Error talking to DB: ", error.message)

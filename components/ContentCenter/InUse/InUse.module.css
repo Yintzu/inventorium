@@ -30,7 +30,13 @@
   border: 1px solid black;
 }
 
+.name-cell{
+  width: 40%;
+}
+
 .button-wrapper{
+  width: fit-content;
   display: flex;
   gap: 5px;
+  margin-left: auto;
 }
