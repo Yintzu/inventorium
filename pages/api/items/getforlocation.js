@@ -7,7 +7,7 @@ export default async function main(req, res) {
 
   try {
     const items =
-      await prisma.$queryRaw`SELECT i.id, p.name, i.locationid, s.sendto, i.inuse, s.tracking, i.productid, i.hostname FROM items i
+      await prisma.$queryRaw`SELECT i.id, p.name, i.locationid, s.sendto, i.inuse, s.tracking, i.productid, i.hostname, i.serial FROM items i
         JOIN products p ON p.id = i.productid
         LEFT JOIN shipping s ON i.shippingid = s.id
         WHERE s.sendto = ${body.location} OR i.locationid = ${body.location}`
