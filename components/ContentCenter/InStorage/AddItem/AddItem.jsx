@@ -8,19 +8,18 @@ export default function AddItem() {
   const { data: products = [] } = useQuery("products", getAllProducts)
   const { selectedLocation } = useGlobalState()
 
-  if (!Array.isArray(products)) return null
-
   const { mutate } = useMutation(insertItem, {
     onSettled: () => {
       queryClient.refetchQueries()
     },
   })
-
+  
   const handleSelect = (e) => {
     mutate({ locationid: selectedLocation.id, productid: e.target.value })
     e.target.value = ""
   }
-
+  
+  if (!Array.isArray(products)) return null
   return (
     <div className={style["add-btn"]} title="Lägg till item">
       +

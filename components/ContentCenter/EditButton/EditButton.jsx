@@ -9,7 +9,7 @@ export default function EditButton({ item }) {
       className={style["button"]}
       onClick={() => setModal({ mode: "edit", item: item })}
     >
-      <img src="/edit.svg" className={style["icon"]} />
+      <img src="/edit.svg" className={style["icon"]} alt="Edit"/>
     </button>
   )
 }

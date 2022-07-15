@@ -22,18 +22,21 @@ export default function ContentLeft() {
           title="Lägg till plats"
           className={style["icon"]}
           onClick={() => setModal({ mode: "addLocation", item: null })}
+          alt="Add location"
         />
         <img
           src="/addItem.svg"
           className={style["icon"]}
           title="Lägg till produkt"
           onClick={() => setModal({ mode: "addProduct", item: null })}
+          alt="Add product"
         />
         <img
           src="/refresh.svg"
           className={style["refresh"]}
           title="Uppdatera all data"
           onClick={() => queryClient.refetchQueries()}
+          alt="Refresh"
         />
       </div>
     </div>
