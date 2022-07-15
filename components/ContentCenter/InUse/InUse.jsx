@@ -1,27 +1,24 @@
 import style from "./InUse.module.css"
 import centerStyle from "../ContentCenter.module.css"
-import { useMutation, useQueryClient } from "react-query"
-import { putOutOfUse } from "../../../utilities/fetchers"
-import EditButton from "../EditButton/EditButton"
 import { useMemo } from "react"
+import InUseCard from "./InUseCard/InUseCard"
 
 export default function InUse({ itemsForLocation = [] }) {
-  const queryClient = useQueryClient()
-
-  const { mutate } = useMutation(putOutOfUse, {
-    onSettled: () => {
-      queryClient.refetchQueries()
-    },
-  })
+  if (!Array.isArray(itemsForLocation)) return <p>Error retrieving items</p>
 
   const sortedItems = useMemo(
     () => [...itemsForLocation].sort((a, b) => (a.name > b.name ? 1 : -1)),
     [itemsForLocation]
   )
 
-  return (
-    <div className={centerStyle["container"]}>
-      <p className={centerStyle["container-title"]}>I drift</p>
+  const renderList = () => {
+    let list = []
+    sortedItems.forEach((item) => {
+      if (item.inuse) list.push(<InUseCard key={item.id} item={item} />)
+    })
+
+    if (!list.length) return null
+    return (
       <table className={style["table"]}>
         <thead>
           <tr className={style["table-headers"]}>
@@ -29,32 +26,15 @@ export default function InUse({ itemsForLocation = [] }) {
             <th>Serienummer</th>
           </tr>
         </thead>
-        <tbody className={style["table-body"]}>
-          {Array.isArray(sortedItems) &&
-            sortedItems.map((item, i) => {
-              if (item.inuse)
-                return (
-                  <tr className={style["table-row"]} key={i}>
-                    <td className={style["name-cell"]}>{item.name}</td>
-                    <td>
-                      <div className={style["justify-between"]}>
-                        <span>{item.serial}</span>
-                        <div className={style["button-wrapper"]}>
-                          <button
-                            className={style["remove-btn"]}
-                            onClick={() => mutate(item.id)}
-                          >
-                            Ta ur drift
-                          </button>
-                          <EditButton item={item} />
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                )
-            })}
-        </tbody>
+        <tbody className={style["table-body"]}>{list}</tbody>
       </table>
+    )
+  }
+
+  return (
+    <div className={centerStyle["container"]}>
+      <p className={centerStyle["container-title"]}>I drift</p>
+      {renderList()}
     </div>
   )
 }
