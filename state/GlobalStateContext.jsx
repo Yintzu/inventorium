@@ -6,7 +6,7 @@ export const useGlobalState = () => useContext(GlobalStateContext)
 export default function GlobalStateProvider({ children }) {
   const [selectedLocation, setSelectedLocation] = useState(null)
   const [showSidebarMobile, setShowSidebarMobile] = useState(false)
-  const [modalMode, setModalMode] = useState(null)
+  const [modal, setModal] = useState({ mode: null, item: null })
 
   return (
     <GlobalStateContext.Provider
@@ -15,8 +15,8 @@ export default function GlobalStateProvider({ children }) {
         setSelectedLocation,
         showSidebarMobile,
         setShowSidebarMobile,
-        modalMode,
-        setModalMode,
+        modal,
+        setModal,
       }}
     >
       {children}

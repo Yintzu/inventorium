@@ -3,14 +3,9 @@ import centerStyle from "../ContentCenter.module.css"
 import { useMutation, useQueryClient } from "react-query"
 import { putOutOfUse } from "../../../utilities/fetchers"
 import EditButton from "../EditButton/EditButton"
-import Modal from "../../Modal/Modal"
-import { useGlobalState } from "../../../state/GlobalStateContext"
-import { useEffect, useState } from "react"
+import { useMemo } from "react"
 
 export default function InUse({ itemsForLocation = [] }) {
-  const { modalMode, setModalMode } = useGlobalState()
-  const [showModal, setShowModal] = useState(false)
-
   const queryClient = useQueryClient()
 
   const { mutate } = useMutation(putOutOfUse, {
@@ -19,14 +14,10 @@ export default function InUse({ itemsForLocation = [] }) {
     },
   })
 
-  const handleOpenModal = (mode) => {
-    setShowModal(true)
-    setModalMode(mode)
-  }
-
-  useEffect(() => {
-    if (!modalMode) setShowModal(false)
-  }, [modalMode])
+  const sortedItems = useMemo(
+    () => [...itemsForLocation].sort((a, b) => (a.name > b.name ? 1 : -1)),
+    [itemsForLocation]
+  )
 
   return (
     <div className={centerStyle["container"]}>
@@ -39,8 +30,8 @@ export default function InUse({ itemsForLocation = [] }) {
           </tr>
         </thead>
         <tbody className={style["table-body"]}>
-          {Array.isArray(itemsForLocation) &&
-            itemsForLocation.map((item, i) => {
+          {Array.isArray(sortedItems) &&
+            sortedItems.map((item, i) => {
               if (item.inuse)
                 return (
                   <tr className={style["table-row"]} key={i}>
@@ -55,12 +46,9 @@ export default function InUse({ itemsForLocation = [] }) {
                           >
                             Ta ur drift
                           </button>
-                          <EditButton handleOpenModal={handleOpenModal} />
+                          <EditButton item={item} />
                         </div>
                       </div>
-                      {showModal && modalMode === "edit" && (
-                        <Modal item={item} />
-                      )}
                     </td>
                   </tr>
                 )

@@ -2,9 +2,15 @@ import InStorageCard from "./InStorageCard/InStorageCard"
 import centerStyle from "../ContentCenter.module.css"
 import style from "./InStorage.module.css"
 import AddItem from "./AddItem/AddItem"
+import { useMemo } from "react"
 
 export default function InStorage({ itemsForLocation = [] }) {
   if (!Array.isArray(itemsForLocation)) return null
+
+  const sortedItems = useMemo(
+    () => [...itemsForLocation].sort((a, b) => (a.name > b.name ? 1 : -1)),
+    [itemsForLocation]
+  )
 
   return (
     <div className={`${centerStyle["container"]}`}>
@@ -23,16 +29,10 @@ export default function InStorage({ itemsForLocation = [] }) {
           </tr>
         </thead>
         <tbody className={style["table-body"]}>
-          {Array.isArray(itemsForLocation) &&
-            itemsForLocation.map((item, i) => {
+          {Array.isArray(sortedItems) &&
+            sortedItems.map((item) => {
               if (!item.inuse)
-                return (
-                  <InStorageCard
-                    key={item.id}
-                    item={item}
-                    itemsForLocation={itemsForLocation}
-                  />
-                )
+                return <InStorageCard key={item.id} item={item} />
             })}
         </tbody>
       </table>

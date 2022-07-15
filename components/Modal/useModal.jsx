@@ -5,7 +5,6 @@ import {
   editSerial,
   getLocations,
   postLocation,
-  putInUse,
   sendItem,
 } from "../../utilities/fetchers.js"
 import { useMutation, useQuery, useQueryClient } from "react-query"
@@ -14,14 +13,14 @@ import { useGlobalState } from "../../state/GlobalStateContext"
 export const useModal = (item) => {
   const queryClient = useQueryClient()
   const { data: locations } = useQuery("locations", getLocations)
-  const { modalMode, setModalMode, selectedLocation } = useGlobalState()
+  const { modal, setModal, selectedLocation } = useGlobalState()
 
   const textInputRef = useRef()
   const selectInputRef = useRef()
 
   let jsx, fetcher
 
-  switch (modalMode) {
+  switch (modal.mode) {
     case "addLocation":
       jsx = (
         <>
@@ -72,7 +71,7 @@ export const useModal = (item) => {
           <input
             type="text"
             className={style["input"]}
-            defaultValue={item.serial}
+            defaultValue={modal.item.serial}
             ref={textInputRef}
           />
         </>
@@ -96,11 +95,11 @@ export const useModal = (item) => {
       mutate({
         textInput: textInputRef.current.value,
         selectInput: selectInputRef.current?.value,
-        itemId: item?.id,
-        productId: item?.productid,
+        itemId: modal.item?.id,
+        productId: modal.item?.productid,
         locationId: selectedLocation?.id,
       })
-      setModalMode(null)
+      setModal({ mode: null, item: null })
     }
   }
 

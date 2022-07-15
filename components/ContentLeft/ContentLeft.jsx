@@ -3,11 +3,10 @@ import Location from "./Location/Location"
 import { useQuery, useQueryClient } from "react-query"
 import { getLocations } from "../../utilities/fetchers"
 import { useGlobalState } from "../../state/GlobalStateContext"
-import Modal from "../Modal/Modal"
 
 export default function ContentLeft() {
   const { data: locations = [] } = useQuery("locations", getLocations)
-  const { showSidebarMobile, modalMode, setModalMode } = useGlobalState()
+  const { showSidebarMobile, setModal } = useGlobalState()
   const queryClient = useQueryClient()
 
   return (
@@ -22,13 +21,13 @@ export default function ContentLeft() {
           src="/addLocation.svg"
           title="Lägg till plats"
           className={style["icon"]}
-          onClick={() => setModalMode("addLocation")}
+          onClick={() => setModal({ mode: "addLocation", item: null })}
         />
         <img
           src="/addItem.svg"
           className={style["icon"]}
           title="Lägg till produkt"
-          onClick={() => setModalMode("addProduct")}
+          onClick={() => setModal({ mode: "addProduct", item: null })}
         />
         <img
           src="/refresh.svg"
@@ -37,7 +36,6 @@ export default function ContentLeft() {
           onClick={() => queryClient.refetchQueries()}
         />
       </div>
-      {["addLocation", "addProduct"].includes(modalMode) && <Modal />}
     </div>
   )
 }

@@ -2,17 +2,18 @@ import { useGlobalState } from "../../state/GlobalStateContext"
 import style from "./Modal.module.css"
 import { useModal } from "./useModal"
 
-export default function Modal({ item }) {
-  const { setModalMode } = useGlobalState()
-  const [jsx, handleSubmit] = useModal(item)
+export default function Modal() {
+  const { setModal } = useGlobalState()
+  const [jsx, handleSubmit] = useModal()
 
-  const handleOverlayClick = e => {
-    if (e.target.className.includes("overlay")) setModalMode(null)
+  const handleOverlayClick = (e) => {
+    if (e.target.className.includes("overlay"))
+      setModal({ mode: null, item: null })
   }
 
-  const handleCancel = e => {
+  const handleCancel = (e) => {
     e.preventDefault()
-    setModalMode(null)
+    setModal({ mode: null, item: null })
   }
 
   return (

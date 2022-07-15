@@ -5,9 +5,12 @@ import ContentCenter from "../components/ContentCenter/ContentCenter.jsx"
 import TopBar from "../components/TopBar/TopBar.jsx"
 import Login from "../components/Login/Login.jsx"
 import { useAuth } from "../state/AuthContext.jsx"
+import Modal from "../components/Modal/Modal.jsx"
+import { useGlobalState } from "../state/GlobalStateContext.jsx"
 
 export default function Home() {
   const { user } = useAuth()
+  const { modal } = useGlobalState()
 
   return (
     <div>
@@ -28,6 +31,7 @@ export default function Home() {
         ) : (
           <Login />
         )}
+        {modal.mode && <Modal />}
       </main>
     </div>
   )
