@@ -1,20 +1,41 @@
-import { useDataContext } from "../../state/DataContext"
-import Location from "./Location"
+import style from "./ContentLeft.module.css"
+import Location from "./Location/Location"
+import { useQuery, useQueryClient } from "react-query"
+import { getLocations } from "../../utilities/fetchers"
+import { useGlobalState } from "../../state/GlobalStateContext"
 
-export default function ContentLeft({ setSelectedLocation }) {
-  const { locations } = useDataContext()
+export default function ContentLeft() {
+  const { data: locations = [] } = useQuery("locations", getLocations)
+  const { showSidebarMobile, setModal } = useGlobalState()
+  const queryClient = useQueryClient()
 
-  console.log('locations', locations)
   return (
-    <div className="content-left">
-      <Location
-        location={"Huvudkontor"}
-        setSelectedLocation={setSelectedLocation}
-      />
-      <Location
-        location={"Norrköping"}
-        setSelectedLocation={setSelectedLocation}
-      />
+    <div className={`content-left ${showSidebarMobile && "content-left-open"}`}>
+      <div className={style["content-left-locations-wrapper"]}>
+        {locations.map((item) => (
+          <Location key={item.id} location={item} />
+        ))}
+      </div>
+      <div className={style["icon-wrapper"]}>
+        <img
+          src="/addLocation.svg"
+          title="Lägg till plats"
+          className={style["icon"]}
+          onClick={() => setModal({ mode: "addLocation", item: null })}
+        />
+        <img
+          src="/addItem.svg"
+          className={style["icon"]}
+          title="Lägg till produkt"
+          onClick={() => setModal({ mode: "addProduct", item: null })}
+        />
+        <img
+          src="/refresh.svg"
+          className={style["refresh"]}
+          title="Uppdatera all data"
+          onClick={() => queryClient.refetchQueries()}
+        />
+      </div>
     </div>
   )
 }

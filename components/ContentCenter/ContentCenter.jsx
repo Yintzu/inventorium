@@ -1,13 +1,32 @@
-export default function ContentCenter({ selectedLocation }) {
+import { useQuery } from "react-query"
+import { useGlobalState } from "../../state/GlobalStateContext"
+import { getItemsForLocation } from "../../utilities/fetchers"
+import style from "./ContentCenter.module.css"
+import InStorage from "./InStorage/InStorage"
+import InUse from "./InUse/InUse"
+import OnTheWay from "./OnTheWay/OnTheWay"
+
+export default function ContentCenter() {
+  const { selectedLocation } = useGlobalState()
+
+  const { data: itemsForLocation } = useQuery(
+    ["itemsForLocation", selectedLocation],
+    () => getItemsForLocation(selectedLocation?.id),
+    { enabled: !!selectedLocation }
+  )
+
   return (
     <div className="content-center">
-      <p className="content-center-title">{selectedLocation}</p>
-      <div className="content-center-container">
-        <p className="content-center-container-title">På väg till</p>
-        <div className="content-center-ontheway-card">
-
-        </div>
-      </div>
+      {selectedLocation && (
+        <>
+          <p className={style["title"]}>{selectedLocation.name}</p>
+          <div className={style["containers"]}>
+            <OnTheWay itemsForLocation={itemsForLocation} />
+            <InStorage itemsForLocation={itemsForLocation} />
+            <InUse itemsForLocation={itemsForLocation} />
+          </div>
+        </>
+      )}
     </div>
   )
 }

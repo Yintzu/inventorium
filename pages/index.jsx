@@ -2,10 +2,15 @@ import Head from "next/head"
 import ContentLeft from "../components/ContentLeft/ContentLeft.jsx"
 import ContentRight from "../components/ContentRight/ContentRight.jsx"
 import ContentCenter from "../components/ContentCenter/ContentCenter.jsx"
-import { useState } from "react"
+import TopBar from "../components/TopBar/TopBar.jsx"
+import Login from "../components/Login/Login.jsx"
+import { useAuth } from "../state/AuthContext.jsx"
+import Modal from "../components/Modal/Modal.jsx"
+import { useGlobalState } from "../state/GlobalStateContext.jsx"
 
 export default function Home() {
-  const [selectedLocation, setSelectedLocation] = useState("")
+  const { user } = useAuth()
+  const { modal } = useGlobalState()
 
   return (
     <div>
@@ -15,14 +20,18 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="top-bar">Inventorium</div>
-
+      <TopBar />
       <main>
-        <div className="content-wrapper">
-          <ContentLeft setSelectedLocation={setSelectedLocation} />
-          <ContentCenter selectedLocation={selectedLocation} />
-          <ContentRight />
-        </div>
+        {user === undefined ? null : user ? (
+          <div className="content-wrapper">
+            <ContentLeft />
+            <ContentCenter />
+            <ContentRight />
+          </div>
+        ) : (
+          <Login />
+        )}
+        {modal.mode && <Modal />}
       </main>
     </div>
   )

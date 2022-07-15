@@ -1,0 +1,42 @@
+.table {
+  width: 100%;
+}
+
+.table-headers {
+  text-align: left;
+}
+
+.table-row {
+  background: var(--CARD_BG);
+}
+
+.table-row:nth-child(odd){
+  background: var(--CONTENT_BG);
+}
+
+.table-row td {
+  padding: 0.5em;
+}
+
+.justify-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+.remove-btn {
+  background: var(--DANGER_RED);
+  cursor: pointer;
+  text-align: center;
+  border: 1px solid black;
+}
+
+.name-cell{
+  width: 40%;
+}
+
+.button-wrapper{
+  width: fit-content;
+  display: flex;
+  gap: 5px;
+  margin-left: auto;
+}

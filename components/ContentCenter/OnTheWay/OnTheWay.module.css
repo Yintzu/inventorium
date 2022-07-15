@@ -1,0 +1,29 @@
+.container-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  gap: 5px;
+}
+
+.grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px;
+}
+
+.card {
+  background: var(--CARD_BG);
+  padding: 0.5rem;
+  box-shadow: var(--BOX_SHADOW);
+}
+
+.card p {
+  margin: 0;
+}
+
+.hasarrived-btn{
+  background: var(--SUCCESS_GREEN);
+  cursor: pointer;
+  margin-top: 0.5rem;
+  border: 1px solid black;
+}

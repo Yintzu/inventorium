@@ -1,0 +1,37 @@
+
+.location {
+  background: var(--CARD_BG);
+  padding: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.expand-button {
+  cursor: pointer;
+  width: 20px;
+  text-align: center;
+}
+
+.location-title-wrapper {
+  font-weight: bold;
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+
+.location-title {
+  margin: 0;
+}
+
+.expanded-categories-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 7px;
+}
+
+.expanded-categories {
+  cursor: pointer;
+  margin: 0;
+  padding: 0.2rem;
+}

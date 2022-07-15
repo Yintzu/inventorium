@@ -1,0 +1,40 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model locations {
+  id       Int        @id @default(autoincrement())
+  name     String     @db.VarChar(255)
+  shipping shipping[]
+}
+
+model items {
+  id         Int      @id @default(autoincrement())
+  productid  Int
+  serial     String?  @db.VarChar(255)
+  locationid Int
+  shippingid Int?
+  inuse      Boolean  @default(false)
+  hostname   String?  @db.VarChar(255)
+  products   products @relation(fields: [productid], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_product")
+}
+
+model products {
+  id    Int     @id @default(autoincrement())
+  name  String  @db.VarChar(255)
+  items items[]
+}
+
+model shipping {
+  id        Int        @id @default(autoincrement())
+  sent      DateTime?  @db.Date
+  received  DateTime?  @db.Date
+  tracking  String?    @db.VarChar(255)
+  sendto    Int?
+  locations locations? @relation(fields: [sendto], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_to")
+}

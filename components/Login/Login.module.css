@@ -1,0 +1,38 @@
+.login {
+  width: 100%;
+  height: 100%;
+  max-width: 600px;
+  max-height: 350px;
+  background: var(--CONTENT_BG);
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  border-radius: 5px;
+}
+
+.input-wrapper {
+  width: min(100%, 320px);
+  display: flex;
+  flex-direction: column;
+}
+
+.input {
+  height: var(--INPUT_HEIGHT);
+  margin-bottom: 1rem;
+}
+
+.login-title {
+  text-align: center;
+  margin: 0 0 1rem 0;
+}
+
+.button {
+  display: block;
+  margin: 0 auto;
+  background: var(--SUCCESS_GREEN);
+  padding: 0.5rem 2rem;
+  margin-top: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  border: 1px solid black;
+}
