@@ -12,6 +12,7 @@ export default function TopBar() {
         className={style["location"]}
         src={"/hamburger.svg"}
         onClick={() => setShowSidebarMobile(prev => !prev)}
+        alt="Hamburger"
       />
       <span className={style["logo"]}>Inventorium</span>
       <div className={style["user-wrapper"]}>

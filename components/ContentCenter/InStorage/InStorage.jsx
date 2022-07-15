@@ -5,10 +5,11 @@ import AddItem from "./AddItem/AddItem"
 import { useMemo } from "react"
 
 export default function InStorage({ itemsForLocation = [] }) {
-  if (!Array.isArray(itemsForLocation)) return <p>Error retrieving items</p>
-
   const sortedItems = useMemo(
-    () => [...itemsForLocation].sort((a, b) => (a.name > b.name ? 1 : -1)),
+    () =>
+      Array.isArray(itemsForLocation)
+        ? [...itemsForLocation].sort((a, b) => (a.name > b.name ? 1 : -1))
+        : [],
     [itemsForLocation]
   )
 

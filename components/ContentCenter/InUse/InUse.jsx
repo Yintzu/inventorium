@@ -4,10 +4,11 @@ import { useMemo } from "react"
 import InUseCard from "./InUseCard/InUseCard"
 
 export default function InUse({ itemsForLocation = [] }) {
-  if (!Array.isArray(itemsForLocation)) return <p>Error retrieving items</p>
-
   const sortedItems = useMemo(
-    () => [...itemsForLocation].sort((a, b) => (a.name > b.name ? 1 : -1)),
+    () =>
+      Array.isArray(itemsForLocation)
+        ? [...itemsForLocation].sort((a, b) => (a.name > b.name ? 1 : -1))
+        : [],
     [itemsForLocation]
   )
 
