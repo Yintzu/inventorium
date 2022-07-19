@@ -3,11 +3,17 @@ import Location from "./Location/Location"
 import { useQuery, useQueryClient } from "react-query"
 import { getLocations } from "../../utilities/fetchers"
 import { useGlobalState } from "../../state/GlobalStateContext"
+import { useMemo } from "react"
 
 export default function ContentLeft() {
   const { data: locations = [], error } = useQuery("locations", getLocations)
   const { showSidebarMobile, setModal } = useGlobalState()
   const queryClient = useQueryClient()
+
+  const sortedLocations = useMemo(
+    () => [...locations].sort((a, b) => (a.name > b.name ? 1 : -1)),
+    [locations]
+  )
 
   return (
     <div className={`content-left ${showSidebarMobile && "content-left-open"}`}>
@@ -15,7 +21,9 @@ export default function ContentLeft() {
         {error ? (
           <p>{error}</p>
         ) : (
-          locations.map((item) => <Location key={item.id} location={item} />)
+          sortedLocations.map((item) => (
+            <Location key={item.id} location={item} />
+          ))
         )}
       </div>
       <div className={style["icon-wrapper"]}>

@@ -3,8 +3,11 @@ import centerStyle from "../ContentCenter.module.css"
 import style from "./InStorage.module.css"
 import AddItem from "./AddItem/AddItem"
 import { useMemo } from "react"
+import { useGlobalState } from "../../../state/GlobalStateContext"
 
 export default function InStorage({ itemsForLocation }) {
+  const { selectedItems, setModal } = useGlobalState()
+
   const sortedItems = useMemo(
     () => [...itemsForLocation].sort((a, b) => (a.name > b.name ? 1 : -1)),
     [itemsForLocation]
@@ -40,6 +43,14 @@ export default function InStorage({ itemsForLocation }) {
         <AddItem />
       </div>
       {renderList()}
+      {selectedItems.length > 0 && (
+        <button
+          className={style["send"]}
+          onClick={() => setModal({ mode: "send", item: selectedItems })}
+        >
+          Skicka ➡
+        </button>
+      )}
     </div>
   )
 }

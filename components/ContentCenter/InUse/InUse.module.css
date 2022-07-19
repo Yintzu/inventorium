@@ -8,6 +8,7 @@
 
 .table-row {
   background: var(--CARD_BG);
+  font-family: monospace;
 }
 
 .table-row:nth-child(odd){

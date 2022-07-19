@@ -1,12 +1,12 @@
 import { useMutation, useQueryClient } from "react-query"
 import { useGlobalState } from "../../../../state/GlobalStateContext"
-import { deleteItem, putInUse } from "../../../../utilities/fetchers"
+import { putInUse } from "../../../../utilities/fetchers"
 import EditButton from "../../EditButton/EditButton"
 import style from "../InStorage.module.css"
 
 export default function InStorageCard({ item }) {
+  const { setSelectedItems } = useGlobalState()
   const queryClient = useQueryClient()
-  const { setModal } = useGlobalState()
 
   const mutationSettings = {
     onSettled: () => {
@@ -14,8 +14,12 @@ export default function InStorageCard({ item }) {
     },
   }
 
-  const { mutate: decrement } = useMutation(deleteItem, mutationSettings)
   const { mutate: enable } = useMutation(putInUse, mutationSettings)
+
+  const handleSelect = (e) => {
+    if (e.target.checked) setSelectedItems((prev) => [...prev, item.id])
+    else setSelectedItems((prev) => prev.filter((id) => item.id !== id))
+  }
 
   return (
     <tr className={style["table-row"]}>
@@ -26,12 +30,6 @@ export default function InStorageCard({ item }) {
 
           <div className={style["btn-wrapper"]}>
             <button
-              className={style["send"]}
-              onClick={() => setModal({ mode: "send", item: item })}
-            >
-              Skicka ➡
-            </button>
-            <button
               className={style["enable"]}
               onClick={() =>
                 enable({
@@ -41,7 +39,15 @@ export default function InStorageCard({ item }) {
             >
               Sätt i drift ⬇
             </button>
-            <EditButton item={item}/>
+            <EditButton item={item} />
+            <label className={style["checkbox-wrapper"]}>
+              <input
+                type="checkbox"
+                className={style["checkbox-input"]}
+                onChange={handleSelect}
+              />
+              <span className={style["checkbox"]}></span>
+            </label>
           </div>
         </div>
       </td>

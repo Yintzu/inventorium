@@ -10,10 +10,11 @@ import {
 import { useMutation, useQuery, useQueryClient } from "react-query"
 import { useGlobalState } from "../../state/GlobalStateContext"
 
-export const useModal = (item) => {
+export const useModal = () => {
   const queryClient = useQueryClient()
   const { data: locations } = useQuery("locations", getLocations)
-  const { modal, setModal, selectedLocation } = useGlobalState()
+  const { modal, setModal, selectedLocation, setSelectedItems } =
+    useGlobalState()
 
   const textInputRef = useRef()
   const selectInputRef = useRef()
@@ -95,10 +96,11 @@ export const useModal = (item) => {
       mutate({
         textInput: textInputRef.current.value,
         selectInput: selectInputRef.current?.value,
-        itemId: modal.item?.id,
+        itemId: modal.item?.id || modal.item,
         productId: modal.item?.productid,
         locationId: selectedLocation?.id,
       })
+      if (modal.mode === "send") setSelectedItems([])
       setModal({ mode: null, item: null })
     }
   }

@@ -5,9 +5,10 @@
   width: 30px;
   aspect-ratio: 1 / 1;
   opacity: 0;
-  direction: rtl;
+  /* direction: rtl; */
   cursor: pointer;
   font-size: 1.2rem;
+  font-family: monospace;
 }
 
 .add-btn {

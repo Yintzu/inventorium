@@ -5,6 +5,7 @@ export const useGlobalState = () => useContext(GlobalStateContext)
 
 export default function GlobalStateProvider({ children }) {
   const [selectedLocation, setSelectedLocation] = useState(null)
+  const [selectedItems, setSelectedItems] = useState([])
   const [showSidebarMobile, setShowSidebarMobile] = useState(false)
   const [modal, setModal] = useState({ mode: null, item: null })
 
@@ -13,6 +14,8 @@ export default function GlobalStateProvider({ children }) {
       value={{
         selectedLocation,
         setSelectedLocation,
+        selectedItems,
+        setSelectedItems,
         showSidebarMobile,
         setShowSidebarMobile,
         modal,

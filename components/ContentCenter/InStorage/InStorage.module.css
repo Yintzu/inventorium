@@ -8,6 +8,7 @@
 
 .table-row {
   background: var(--CARD_BG);
+  font-family: monospace;
 }
 
 .table-row:nth-child(odd) {
@@ -22,18 +23,6 @@
   display: flex;
   justify-content: space-between;
 }
-
-/* .grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 1rem;
-}
-
-.card {
-  background: var(--CARD_BG);
-  padding: 0.5rem;
-  box-shadow: var(--BOX_SHADOW);
-} */
 
 .title-wrapper {
   position: relative;
@@ -59,7 +48,7 @@
   margin-bottom: 1rem;
 }
 
-.name-cell{
+.name-cell {
   width: 40%;
 }
 
@@ -72,6 +61,55 @@
   width: fit-content;
   display: flex;
   gap: 5px;
+}
+
+.checkbox-wrapper {
+  position: relative;
+  user-select: none;
+  width: 21px;
+  height: 21px;
+  cursor: pointer;
+}
+
+.checkbox-wrapper input {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
+.checkbox {
+  border: var(--BUTTON_BORDER);
+  background: var(--YELLOW);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.checkbox-wrapper:hover input ~ .checkbox {
+  filter: brightness(0.9);
+}
+
+.checkbox:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.checkbox-wrapper input:checked ~ .checkbox:after {
+  display: block;
+}
+
+.checkbox-wrapper .checkbox:after {
+  left: 6px;
+  top: 2px;
+  width: 7px;
+  height: 13px;
+  border: solid rgb(0, 0, 0);
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
 }
 
 .increment,
@@ -91,7 +129,9 @@
 }
 
 .send {
+  display: block;
   background: var(--YELLOW);
+  margin: 0.5rem 2px 0 auto;
 }
 
 .enable {
