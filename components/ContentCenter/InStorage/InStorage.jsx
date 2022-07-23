@@ -16,7 +16,8 @@ export default function InStorage({ itemsForLocation = [] }) {
   const renderList = () => {
     let list = []
     sortedItems.forEach((item) => {
-      if (!item.inuse) list.push(<InStorageCard key={item.id} item={item} />)
+      if (!item.inuse && !item.sendto)
+        list.push(<InStorageCard key={item.id} item={item} />)
     })
 
     if (!list.length) return null
