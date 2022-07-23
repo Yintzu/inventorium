@@ -5,16 +5,18 @@ import { getLocations } from "../../utilities/fetchers"
 import { useGlobalState } from "../../state/GlobalStateContext"
 
 export default function ContentLeft() {
-  const { data: locations = [] } = useQuery("locations", getLocations)
+  const { data: locations = [], error } = useQuery("locations", getLocations)
   const { showSidebarMobile, setModal } = useGlobalState()
   const queryClient = useQueryClient()
 
   return (
     <div className={`content-left ${showSidebarMobile && "content-left-open"}`}>
       <div className={style["content-left-locations-wrapper"]}>
-        {locations.map((item) => (
-          <Location key={item.id} location={item} />
-        ))}
+        {error ? (
+          <p>{error}</p>
+        ) : (
+          locations.map((item) => <Location key={item.id} location={item} />)
+        )}
       </div>
       <div className={style["icon-wrapper"]}>
         <img

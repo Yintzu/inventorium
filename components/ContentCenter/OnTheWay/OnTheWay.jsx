@@ -6,7 +6,7 @@ import { useGlobalState } from "../../../state/GlobalStateContext"
 import OutgoingCard from "./OutgoingCard/OutgoingCard"
 import IncomingCard from "./IncomingCard/IncomingCard"
 
-export default function OnTheWay({ itemsForLocation = [] }) {
+export default function OnTheWay({ itemsForLocation }) {
   const { selectedLocation } = useGlobalState()
   const { data: locations = [] } = useQuery("locations", getLocations)
 

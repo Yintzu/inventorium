@@ -3,12 +3,9 @@ import centerStyle from "../ContentCenter.module.css"
 import { useMemo } from "react"
 import InUseCard from "./InUseCard/InUseCard"
 
-export default function InUse({ itemsForLocation = [] }) {
+export default function InUse({ itemsForLocation }) {
   const sortedItems = useMemo(
-    () =>
-      Array.isArray(itemsForLocation)
-        ? [...itemsForLocation].sort((a, b) => (a.name > b.name ? 1 : -1))
-        : [],
+    () => [...itemsForLocation].sort((a, b) => (a.name > b.name ? 1 : -1)),
     [itemsForLocation]
   )
 

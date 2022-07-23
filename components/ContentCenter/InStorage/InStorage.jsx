@@ -4,12 +4,9 @@ import style from "./InStorage.module.css"
 import AddItem from "./AddItem/AddItem"
 import { useMemo } from "react"
 
-export default function InStorage({ itemsForLocation = [] }) {
+export default function InStorage({ itemsForLocation }) {
   const sortedItems = useMemo(
-    () =>
-      Array.isArray(itemsForLocation)
-        ? [...itemsForLocation].sort((a, b) => (a.name > b.name ? 1 : -1))
-        : [],
+    () => [...itemsForLocation].sort((a, b) => (a.name > b.name ? 1 : -1)),
     [itemsForLocation]
   )
 
