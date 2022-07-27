@@ -99,3 +99,8 @@ export const editSerial = async ({ itemId, textInput }) => {
   })
   return await res.json()
 }
+
+export const deleteAll = async () => {
+  const res = await fetch("/api/items/deleteall")
+  return await res.json()
+}

@@ -1,7 +1,7 @@
 import style from "./ContentLeft.module.css"
 import Location from "./Location/Location"
 import { useQuery, useQueryClient } from "react-query"
-import { getLocations } from "../../utilities/fetchers"
+import { deleteAll, getLocations } from "../../utilities/fetchers"
 import { useGlobalState } from "../../state/GlobalStateContext"
 import { useMemo } from "react"
 
@@ -40,6 +40,16 @@ export default function ContentLeft() {
           title="Lägg till produkt"
           onClick={() => setModal({ mode: "addProduct", item: null })}
           alt="Add product"
+        />
+        <img
+          src="/deleteItems.svg"
+          className={style["icon"]}
+          title="Ta bort items där serial = DELETE"
+          onClick={async () => {
+            await deleteAll()
+            queryClient.refetchQueries()
+          }}
+          alt="Remove items"
         />
         <img
           src="/refresh.svg"
